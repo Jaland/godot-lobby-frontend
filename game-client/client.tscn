@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://client/client_ui.gd" type="Script" id=1]
-[ext_resource path="res://client/client.gd" type="Script" id=2]
+[ext_resource path="res://game-client/client_ui.gd" type="Script" id=1]
+[ext_resource path="res://game-client/client.gd" type="Script" id=2]
 [ext_resource path="res://resources/fonts/vera-25.tres" type="DynamicFont" id=3]
 
 [node name="Client" type="Control"]
@@ -72,7 +72,6 @@ margin_top = 237.0
 margin_right = 690.0
 margin_bottom = 271.0
 rect_rotation = -0.0439733
-placeholder_text = "Username"
 
 [node name="UsernameLabel" type="RichTextLabel" parent="Login"]
 margin_left = 386.0
@@ -83,5 +82,5 @@ custom_fonts/normal_font = ExtResource( 3 )
 text = "Username"
 
 [connection signal="pressed" from="ChatScreen/Chat/Message/Send" to="." method="_on_Send_pressed"]
-[connection signal="pressed" from="ChatScreen/Disconnect" to="." method="_on_Disconnect_pressed"]
-[connection signal="pressed" from="Login/Connect" to="." method="_on_Connect_pressed"]
+[connection signal="pressed" from="ChatScreen/Disconnect" to="." method="_on_Disconnect_pressed_game"]
+[connection signal="pressed" from="Login/Connect" to="." method="_on_Connect_pressed_game"]

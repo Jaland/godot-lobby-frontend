@@ -1,6 +1,4 @@
 make all --print-data-base --no-builtin-variables --no-builtin-rules --question
-make: *** No rule to make target 'all'.  Stop.
-
 # GNU Make 4.3
 # Built for x86_64-redhat-linux-gnu
 # Copyright (C) 1988-2020 Free Software Foundation, Inc.
@@ -8,7 +6,7 @@ make: *** No rule to make target 'all'.  Stop.
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Tue Jul 12 14:39:38 2022
+# Make data base, printed on Thu Jul 14 15:52:54 2022
 
 # Variables
 
@@ -23,7 +21,7 @@ LMOD_SETTARG_FULL_SUPPORT = no
 # environment
 GJS_DEBUG_OUTPUT = stderr
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-6ed9617e-2fc1-4b70-bac0-541236122e96.sock
+VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-ba1df7ef-2b4f-458d-b7b9-982083e8a6c0.sock
 # environment
 VSCODE_CWD = /home/jland
 # environment
@@ -45,7 +43,7 @@ VSCODE_HANDLES_UNCAUGHT_ERRORS = true
 # default
 .VARIABLES := 
 # environment
-PWD = /home/jland/Documents/code/game/godot-demo-projects/networking/websocket_chat
+PWD = /home/jland/Documents/code/game/test-project-1
 # automatic
 %D = $(patsubst %/,%,$(dir $%))
 # environment
@@ -79,7 +77,7 @@ MAKEFLAGS = pqrR
 # environment
 USER_NAME = user11
 # makefile
-CURDIR := /home/jland/Documents/code/game/godot-demo-projects/networking/websocket_chat
+CURDIR := /home/jland/Documents/code/game/test-project-1
 # environment
 define BASH_FUNC_module%%
 () {  eval $($LMOD_CMD bash "$@") && eval $(${LMOD_SETTARG_CMD:-:} -s sh)
@@ -116,7 +114,7 @@ MAKEFILE_LIST := Makefile
 # environment
 VSCODE_VERBOSE_LOGGING = true
 # environment
-VSCODE_PID = 1848413
+VSCODE_PID = 3236401
 # environment
 XDG_SESSION_TYPE = wayland
 # automatic
@@ -144,8 +142,8 @@ define BASH_FUNC_ml%%
 endef
 # default
 MAKE_HOST := x86_64-redhat-linux-gnu
-# makefile
-SHELL = /bin/sh
+# makefile (from 'Makefile', line 3)
+SHELL = /bin/bash
 # default
 MAKECMDGOALS := all
 # environment
@@ -219,7 +217,7 @@ which_declare = declare -f
 # environment
 DEBUGINFOD_URLS = https://debuginfod.fedoraproject.org/ 
 # environment
-GIO_LAUNCHED_DESKTOP_FILE_PID = 1848413
+GIO_LAUNCHED_DESKTOP_FILE_PID = 3236401
 # environment
 _ = /usr/bin/make
 # environment
@@ -255,7 +253,7 @@ LMOD_VERSION = 8.4.30
 # environment
 GDMSESSION = gnome
 # variable set hash-table stats:
-# Load=116/1024=11%, Rehash=0, Collisions=5/147=3%
+# Load=116/1024=11%, Rehash=0, Collisions=5/148=3%
 
 # Pattern-specific Variable Values
 
@@ -263,9 +261,9 @@ GDMSESSION = gnome
 
 # Directories
 
-# . (device 41, inode 19861277): 14 files, no impossibilities.
+# . (device 41, inode 19933154): 17 files, no impossibilities.
 
-# 14 files, no impossibilities in 1 directories.
+# 17 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
@@ -277,14 +275,17 @@ push-to-droplet:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 21):
+#  recipe to execute (from 'Makefile', line 26):
 	ssh $(USER)@$(IP_ADDRESS) rm -rf /var/www/html/*
 	rsync target/* $(USER)@$(IP_ADDRESS):/var/www/html
 
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2022-07-12 13:23:49.209711999
+ 
+make: *** No rule to make target 'all'.  Stop.
+
+#  Last modified 2022-07-13 11:03:52.344409363
 #  File has been updated.
 #  Successfully updated.
 
@@ -305,31 +306,37 @@ start-local:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
- 
-#  recipe to execute (from 'Makefile', line 10):
-	sudo systemctl start httpd.service
+#  recipe to execute (from 'Makefile', line 13):
+	@sudo systemctl start httpd.service
 
 build:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 5):
+#  recipe to execute (from 'Makefile', line 6):
 	@rm -rf target
 	@mkdir target
-	@godot --export "HTML5"
+	source resources/env/local.env
+	echo $TEST2
+	godot --export "HTML5"
+
+build-and-load: build load
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 stop-local:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 14):
-	sudo systemctl stop httpd.service
+#  recipe to execute (from 'Makefile', line 17):
+	@sudo systemctl stop httpd.service
 
 load:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 17):
+#  recipe to execute (from 'Makefile', line 20):
 	@sudo rm -rf /var/www/html/*
 	@sudo cp -rf target/* /var/www/html/
 
@@ -337,23 +344,23 @@ restart-local:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 12):
-	sudo systemctl restart httpd.service
+#  recipe to execute (from 'Makefile', line 15):
+	@sudo systemctl restart httpd.service
 
 # files hash-table stats:
-# Load=10/1024=1%, Rehash=0, Collisions=0/20=0%
+# Load=11/1024=1%, Rehash=0, Collisions=0/23=0%
 # VPATH Search Paths
 
 # No 'vpath' search paths.
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 25 / storage = 251 B / avg = 10 B
-# current buf: size = 8162 B / used = 251 B / count = 25 / avg = 10 B
+# strcache buffers: 1 (0) / strings = 29 / storage = 300 B / avg = 10 B
+# current buf: size = 8162 B / used = 300 B / count = 29 / avg = 10 B
 
-# strcache performance: lookups = 35 / hit rate = 28%
+# strcache performance: lookups = 42 / hit rate = 30%
 # hash-table stats:
-# Load=25/8192=0%, Rehash=0, Collisions=0/35=0%
-# Finished Make data base on Tue Jul 12 14:39:38 2022
+# Load=29/8192=0%, Rehash=0, Collisions=0/42=0%
+# Finished Make data base on Thu Jul 14 15:52:55 2022
 
  

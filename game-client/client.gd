@@ -40,7 +40,6 @@ func _exit_tree():
 func _process(_delta):
 	if _client.get_connection_status() == WebSocketClient.CONNECTION_DISCONNECTED:
 		return
-
 	_client.poll()
 
 
@@ -63,17 +62,15 @@ func connect_to_url(username, protocols):
 	var fullHostname = hostname + "/" + username
 	var err = _client.connect_to_url(fullHostname, protocols, false)
 	if(err == OK):
-		_login_screen.hide()
+		_login_screen.visible=false
 	return err
 
 
 func disconnect_from_host():
-	var err = _client.disconnect_from_host(1000, "Bye bye!")
-	if(err == OK):
-		_login_screen.show()
-	return err
+	_login_screen.visible=true
+	_client.disconnect_from_host(1000, "Bye bye!")
 
 
 func send_data(data):
-	Utils._log(_log_dest, "Sending Data %s" % [data])
+	Utils._log(_log_dest, "Emmiting Signal Data %s" % [data])
 	_client.get_peer(1).put_packet(data.to_utf8())

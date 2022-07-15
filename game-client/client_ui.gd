@@ -6,7 +6,7 @@ onready var _chat_input = $ChatScreen/Chat/Message/ChatTextSend
 onready var _user_name = $Login/Username
 
 
-func _on_Send_pressed():
+func _on_Send_pressed_game():
 	if _chat_input.text == "":
 		return
 	Utils._log(_chat_area, "Send Pressed")
@@ -14,7 +14,7 @@ func _on_Send_pressed():
 	_chat_input.text = ""
 
 
-func _on_Connect_pressed():
+func _on_Connect_pressed_game():
 	if _user_name.text != "":
 		Utils._log(_chat_area, "Connecting with user: %s" % [_user_name.text])
 		# var supported_protocols = PoolStringArray(["my-protocol2", "my-protocol", "binary"])
