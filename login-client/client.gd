@@ -1,8 +1,10 @@
 extends Node
 
 
+signal change_current_scene(path_to_new_scene)
+
 onready var _error_label = get_parent().get_node("Login/ErrorMessage")
-onready var _transition_player = get_parent().get_node("TransitionScreen")
+onready var _transition_player = get_parent().get_parent().get_node("TransitionScreen")
 
 # Used to store User Info while waiting to connect
 var user_info = null
@@ -75,19 +77,7 @@ func _client_received(_p_id = 1):
 	var response = Marshalls.base64_to_utf8(Utils.decode_data(packet, true))
 	save_token(response)
 	disconnect_from_host()
-	_transition_player.hide_scene()
-	
-func _load_lobby():
-#	ClientNode
-	print("Loading Scene")
-	var root = get_parent()
-	root.remove_child(root.get_node("Login"))
-	root.get_child(0).queue_free()
-	var LobbyScene = preload("res://lobby/lobby.tscn")
-	root.add_child(LobbyScene.instance())
-	
-#	get_tree().change_scene("lobby-client/lobby.tscn")
-	_transition_player.show_scene()
+	get_parent().load_new_scene("res://lobby/lobby.tscn")
 
 func disconnect_from_host():
 	_client.disconnect_from_host(1000, "Bye bye!")

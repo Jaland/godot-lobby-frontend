@@ -4,6 +4,8 @@ onready var _client = $Client
 onready var _user_name = $Login/Username/Username
 onready var _password = $Login/Password/Password
 
+signal change_current_scene(path_to_new_scene)
+
 func _on_Connect_pressed():
 	if _user_name.text == "" || _password.text == "" :
 		return
@@ -26,3 +28,8 @@ func _input(event):
 			get_node(focus_next).grab_focus()
 		get_tree().set_input_as_handled()
 
+func load_new_scene(path_to_new_scene: String):
+	emit_signal("change_current_scene", path_to_new_scene)
+
+func _on_Client_change_current_scene(path_to_new_scene):
+	pass # Replace with function body.
