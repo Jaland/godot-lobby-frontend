@@ -1,40 +1,44 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://login-client/client_ui.gd" type="Script" id=1]
 [ext_resource path="res://login-client/client.gd" type="Script" id=2]
 [ext_resource path="res://resources/fonts/vera-25.tres" type="DynamicFont" id=3]
+[ext_resource path="res://load-screen/TransitionScreen.tscn" type="PackedScene" id=4]
 
-[node name="Client" type="Control"]
+[node name="LoginNode" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 7
+size_flags_vertical = 7
 script = ExtResource( 1 )
 
 [node name="Client" type="Node" parent="."]
 script = ExtResource( 2 )
 
 [node name="Login" type="Panel" parent="."]
+margin_top = 1.0
 margin_right = 1021.0
-margin_bottom = 599.0
+margin_bottom = 600.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 
 [node name="Username" type="Container" parent="Login"]
-margin_right = 40.0
-margin_bottom = 40.0
 
-[node name="Username" type="TextEdit" parent="Login/Username"]
+[node name="Username" type="LineEdit" parent="Login/Username"]
 margin_left = 432.0
 margin_top = 222.0
 margin_right = 642.0
 margin_bottom = 246.0
-rect_rotation = -0.0439733
-rect_pivot_offset = Vector2( 125.966, 44.0967 )
 focus_next = NodePath("../../Password/Password Label")
+custom_fonts/font = ExtResource( 3 )
 
 [node name="UsernameLabel" type="RichTextLabel" parent="Login/Username"]
 margin_left = 335.0
 margin_top = 222.0
 margin_right = 427.0
 margin_bottom = 246.0
-rect_pivot_offset = Vector2( 26, 12 )
 custom_fonts/normal_font = ExtResource( 3 )
 text = "Username"
 
@@ -42,50 +46,61 @@ text = "Username"
 margin_right = 40.0
 margin_bottom = 40.0
 
-[node name="Password" type="TextEdit" parent="Login/Password"]
+[node name="Password" type="LineEdit" parent="Login/Password"]
 margin_left = 430.804
 margin_top = 256.564
 margin_right = 640.804
 margin_bottom = 280.564
-rect_rotation = -0.256177
-rect_pivot_offset = Vector2( 125.966, 44.0967 )
 focus_next = NodePath("../../Connect")
 focus_previous = NodePath("../../Username/Username")
-hiding_enabled = true
+custom_fonts/font = ExtResource( 3 )
+secret = true
 
 [node name="Password Label" type="RichTextLabel" parent="Login/Password"]
 margin_left = 336.0
 margin_top = 258.0
 margin_right = 428.0
 margin_bottom = 282.0
-rect_pivot_offset = Vector2( 26, 12 )
 custom_fonts/normal_font = ExtResource( 3 )
 text = "Password"
 
 [node name="Connect" type="Button" parent="Login"]
-margin_left = 419.0
-margin_top = 293.0
-margin_right = 653.0
-margin_bottom = 313.0
+margin_left = 374.0
+margin_top = 314.0
+margin_right = 608.0
+margin_bottom = 334.0
 focus_next = NodePath("../Register")
 focus_previous = NodePath("../Password/Password")
 text = "Connect"
 
 [node name="Register" type="Button" parent="Login"]
-margin_left = 423.0
-margin_top = 367.0
-margin_right = 657.0
-margin_bottom = 387.0
+margin_left = 376.0
+margin_top = 370.0
+margin_right = 610.0
+margin_bottom = 390.0
 text = "Register"
 
 [node name="Disconnect" type="Button" parent="Login"]
-margin_left = 419.0
-margin_top = 326.0
-margin_right = 653.0
-margin_bottom = 346.0
+margin_left = 376.0
+margin_top = 341.0
+margin_right = 610.0
+margin_bottom = 361.0
 rect_scale = Vector2( 1.00943, 1.1 )
 text = "Disconnect"
+
+[node name="ErrorMessage" type="RichTextLabel" parent="Login"]
+visible = false
+margin_left = 376.0
+margin_top = 285.0
+margin_right = 626.0
+margin_bottom = 310.0
+custom_colors/default_color = Color( 1, 0, 0, 1 )
+custom_fonts/normal_font = ExtResource( 3 )
+text = "Error"
+
+[node name="TransitionScreen" parent="." instance=ExtResource( 4 )]
 
 [connection signal="pressed" from="Login/Connect" to="." method="_on_Connect_pressed"]
 [connection signal="pressed" from="Login/Register" to="." method="_on_Register_pressed"]
 [connection signal="pressed" from="Login/Disconnect" to="." method="_on_Disconnect_pressed"]
+[connection signal="faded_to_black" from="TransitionScreen" to="Client" method="_load_lobby"]

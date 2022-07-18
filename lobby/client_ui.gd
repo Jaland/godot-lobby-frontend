@@ -23,3 +23,7 @@ func _on_Connect_pressed_game():
 
 func _on_Disconnect_pressed():
 	_client.disconnect_from_host()
+
+
+func _on_Send_pressed():
+	pass # Replace with function body.

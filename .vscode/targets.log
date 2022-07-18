@@ -1,4 +1,6 @@
 make all --print-data-base --no-builtin-variables --no-builtin-rules --question
+make: *** No rule to make target 'all'.  Stop.
+
 # GNU Make 4.3
 # Built for x86_64-redhat-linux-gnu
 # Copyright (C) 1988-2020 Free Software Foundation, Inc.
@@ -6,7 +8,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Thu Jul 14 15:52:54 2022
+# Make data base, printed on Sun Jul 17 19:41:35 2022
 
 # Variables
 
@@ -20,8 +22,6 @@ NO_AT_BRIDGE = 1
 LMOD_SETTARG_FULL_SUPPORT = no
 # environment
 GJS_DEBUG_OUTPUT = stderr
-# environment
-VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-ba1df7ef-2b4f-458d-b7b9-982083e8a6c0.sock
 # environment
 VSCODE_CWD = /home/jland
 # environment
@@ -54,18 +54,16 @@ MAIL = /var/spool/mail/jland
 XDG_DATA_DIRS = /home/jland/.local/share/flatpak/exports/share:/var/lib/flatpak/exports/share:/usr/local/share/:/usr/share/
 # automatic
 ^D = $(patsubst %/,%,$(dir $^))
-# environment
-VSCODE_LOG_STACK = false
 # automatic
 %F = $(notdir $%)
 # environment
-VSCODE_CODE_CACHE_PATH = /home/jland/.config/Code/CachedData/c3511e6c69bb39013c4a4b7b9566ec1ca73fc4d5
+VSCODE_CODE_CACHE_PATH = /home/jland/.config/Code/CachedData/b06ae3b2d2dbfe28bca3134cc6be65935cdfea6a
 # makefile (from 'Makefile', line 1)
 IP_ADDRESS = 162.243.168.138
 # environment
 LANG = C
 # environment
-XAUTHORITY = /run/user/1000/.mutter-Xwaylandauth.XMDBO1
+XAUTHORITY = /run/user/1000/.mutter-Xwaylandauth.NK6OP1
 # default
 .LOADED := 
 # default
@@ -83,8 +81,6 @@ define BASH_FUNC_module%%
 () {  eval $($LMOD_CMD bash "$@") && eval $(${LMOD_SETTARG_CMD:-:} -s sh)
 }
 endef
-# environment
-VSCODE_PIPE_LOGGING = true
 # environment
 APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = 1
 # environment
@@ -112,15 +108,13 @@ MAKEFILE_LIST := Makefile
 # automatic
 @F = $(notdir $@)
 # environment
-VSCODE_VERBOSE_LOGGING = true
-# environment
-VSCODE_PID = 3236401
+VSCODE_PID = 10565
 # environment
 XDG_SESSION_TYPE = wayland
 # automatic
 ?D = $(patsubst %/,%,$(dir $?))
 # environment
-SESSION_MANAGER = local/unix:@/tmp/.ICE-unix/1922,unix/unix:/tmp/.ICE-unix/1922
+SESSION_MANAGER = local/unix:@/tmp/.ICE-unix/3690254,unix/unix:/tmp/.ICE-unix/3690254
 # automatic
 *F = $(notdir $*)
 # environment
@@ -157,7 +151,7 @@ MAKELEVEL := 0
 # default
 MAKE = $(MAKE_COMMAND)
 # environment
-PATH = /home/jland/Tools/emsdk:/home/jland/Tools/emsdk/upstream/emscripten:/home/jland/Tools/emsdk/node/14.18.2_64bit/bin:/home/jland/.local/bin:/home/jland/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin
+PATH = /home/jland/Tools/emsdk:/home/jland/Tools/emsdk/upstream/emscripten:/home/jland/Tools/emsdk/node/14.18.2_64bit/bin:/home/jland/Tools/emsdk:/home/jland/Tools/emsdk/upstream/emscripten:/home/jland/Tools/emsdk/node/14.18.2_64bit/bin:/home/jland/.local/bin:/home/jland/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin
 # environment
 MOZ_GMP_PATH = /usr/lib64/mozilla/plugins/gmp-gmpopenh264/system-installed
 # default
@@ -169,9 +163,7 @@ MODULESHOME = /usr/share/lmod/lmod
 # environment
 LMOD_sys = Linux
 # environment
-INVOCATION_ID = c0f97acf1d064e5cb956689223105bc6
-# environment
-VSCODE_LOG_NATIVE = false
+INVOCATION_ID = 72b480bcfc03488e9f28917dd0b798ab
 # environment
 USERNAME = jland
 # environment
@@ -197,7 +189,7 @@ BASH_ENV = /usr/share/lmod/lmod/init/bash
 # makefile
 .DEFAULT_GOAL := build
 # environment
-SYSTEMD_EXEC_PID = 1956
+SYSTEMD_EXEC_PID = 3690286
 # environment
 MODULEPATH_ROOT = /usr/share/modulefiles
 # environment
@@ -211,19 +203,19 @@ USER = root
 # default
 MAKE_VERSION := 4.3
 # environment
-MANAGERPID = 1799
+MANAGERPID = 3690131
 # environment
 which_declare = declare -f
 # environment
 DEBUGINFOD_URLS = https://debuginfod.fedoraproject.org/ 
 # environment
-GIO_LAUNCHED_DESKTOP_FILE_PID = 3236401
+GIO_LAUNCHED_DESKTOP_FILE_PID = 10565
 # environment
 _ = /usr/bin/make
 # environment
 XDG_RUNTIME_DIR = /run/user/1000
 # environment
-JOURNAL_STREAM = 8:35129
+JOURNAL_STREAM = 8:18009775
 # environment
 XDG_SESSION_CLASS = user
 # environment
@@ -235,7 +227,7 @@ QT_IM_MODULE = ibus
 # environment
 ELECTRON_RUN_AS_NODE = 1
 # environment
-VSCODE_IPC_HOOK = /run/user/1000/vscode-1b15668d-1.67.2-main.sock
+VSCODE_IPC_HOOK = /run/user/1000/vscode-1b15668d-1.69.1-main.sock
 # default
 .RECIPEPREFIX := 
 # automatic
@@ -253,7 +245,7 @@ LMOD_VERSION = 8.4.30
 # environment
 GDMSESSION = gnome
 # variable set hash-table stats:
-# Load=116/1024=11%, Rehash=0, Collisions=5/148=3%
+# Load=111/1024=11%, Rehash=0, Collisions=4/143=3%
 
 # Pattern-specific Variable Values
 
@@ -282,9 +274,6 @@ push-to-droplet:
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
- 
-make: *** No rule to make target 'all'.  Stop.
-
 #  Last modified 2022-07-13 11:03:52.344409363
 #  File has been updated.
 #  Successfully updated.
@@ -329,6 +318,7 @@ stop-local:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
+ 
 #  recipe to execute (from 'Makefile', line 17):
 	@sudo systemctl stop httpd.service
 
@@ -355,12 +345,12 @@ restart-local:
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 29 / storage = 300 B / avg = 10 B
-# current buf: size = 8162 B / used = 300 B / count = 29 / avg = 10 B
+# strcache buffers: 1 (0) / strings = 29 / storage = 301 B / avg = 10 B
+# current buf: size = 8162 B / used = 301 B / count = 29 / avg = 10 B
 
 # strcache performance: lookups = 42 / hit rate = 30%
 # hash-table stats:
 # Load=29/8192=0%, Rehash=0, Collisions=0/42=0%
-# Finished Make data base on Thu Jul 14 15:52:55 2022
+# Finished Make data base on Sun Jul 17 19:41:35 2022
 
  
