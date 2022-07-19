@@ -8,7 +8,7 @@ make: *** No rule to make target 'all'.  Stop.
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Sun Jul 17 19:41:35 2022
+# Make data base, printed on Mon Jul 18 21:23:37 2022
 
 # Variables
 
@@ -253,9 +253,9 @@ GDMSESSION = gnome
 
 # Directories
 
-# . (device 41, inode 19933154): 17 files, no impossibilities.
+# . (device 41, inode 19933154): 21 files, no impossibilities.
 
-# 17 files, no impossibilities in 1 directories.
+# 21 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
@@ -302,6 +302,7 @@ build:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
+ 
 #  recipe to execute (from 'Makefile', line 6):
 	@rm -rf target
 	@mkdir target
@@ -318,7 +319,6 @@ stop-local:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
- 
 #  recipe to execute (from 'Makefile', line 17):
 	@sudo systemctl stop httpd.service
 
@@ -345,12 +345,12 @@ restart-local:
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 29 / storage = 301 B / avg = 10 B
-# current buf: size = 8162 B / used = 301 B / count = 29 / avg = 10 B
+# strcache buffers: 1 (0) / strings = 33 / storage = 326 B / avg = 9 B
+# current buf: size = 8162 B / used = 326 B / count = 33 / avg = 9 B
 
-# strcache performance: lookups = 42 / hit rate = 30%
+# strcache performance: lookups = 46 / hit rate = 28%
 # hash-table stats:
-# Load=29/8192=0%, Rehash=0, Collisions=0/42=0%
-# Finished Make data base on Sun Jul 17 19:41:35 2022
+# Load=33/8192=0%, Rehash=0, Collisions=0/46=0%
+# Finished Make data base on Mon Jul 18 21:23:37 2022
 
  

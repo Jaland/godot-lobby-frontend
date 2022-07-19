@@ -1,12 +1,11 @@
 extends Node
 
-onready var _log_dest = get_parent().get_node("ChatScreen/Chat/ChatArea")
-onready var _login_screen = get_parent().get_node("Login")
+onready var _log_dest = get_parent().get_node("Chat/ChatArea")
 
 var _client = WebSocketClient.new()
 var _write_mode = WebSocketPeer.WRITE_MODE_BINARY
 var last_connected_client = 0
-var hostname="ws://localhost:8080/chat"
+var base_host= ProjectSettings.get_setting("ws/hostname") + "/chat"
 
 func _init():
 	_client.connect("connection_established", self, "_client_connected")
@@ -46,6 +45,10 @@ func _process(_delta):
 func _client_connected(protocol):
 	Utils._log(_log_dest, "Client just connected with protocol: %s" % protocol)
 	_client.get_peer(1).set_write_mode(WebSocketPeer.WRITE_MODE_TEXT)
+#	Send auth request
+	var token = get_parent().get_node("/root/RootNode").load_token()
+	var data = JSON.print({"token": token, "requestType": "AUTH"})
+	send_data(data)
 
 
 func _client_disconnected(clean=true):
@@ -58,19 +61,15 @@ func _client_received(_p_id = 1):
 	Utils._log(_log_dest, "Received data. BINARY: %s: %s" % [not is_string, Utils.decode_data(packet, is_string)])
 
 
-func connect_to_url(username, protocols):
-	var fullHostname = hostname + "/" + username
-	var err = _client.connect_to_url(fullHostname, protocols, false)
-	if(err == OK):
-		_login_screen.visible=false
+func _connect_to_chat_service():
+	var fullHostname = base_host + "/test"
+	var err = _client.connect_to_url(fullHostname, [], false)
 	return err
 
 
 func disconnect_from_host():
-	_login_screen.visible=true
 	_client.disconnect_from_host(1000, "Bye bye!")
 
 
 func send_data(data):
-	Utils._log(_log_dest, "Emmiting Signal Data %s" % [data])
 	_client.get_peer(1).put_packet(data.to_utf8())

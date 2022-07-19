@@ -1,19 +1,17 @@
 extends Node
 
-
-signal change_current_scene(path_to_new_scene)
-
 onready var _error_label = get_parent().get_node("Login/ErrorMessage")
 onready var _transition_player = get_parent().get_parent().get_node("TransitionScreen")
 
 # Used to store User Info while waiting to connect
 var user_info = null
+var request_type = "LOGIN"
 
 var _client = WebSocketClient.new()
 
 # TODO: Externalize hostname
-var hostname="ws://localhost:8080/login"
-var path_to_lobby_scene=""
+var base_host= ProjectSettings.get_setting("ws/hostname") + "/login"
+var path_to_lobby_scene="chat/chat.tscn"
 
 func _init():
 	_client.connect("connection_established", self, "_client_connected")
@@ -48,15 +46,12 @@ func _client_disconnected(clean=true):
 
 # Connect to server and set user info
 func login(username, password, protocols, register):
-	# if(OS.is_userfs_persistent()):
-		# show_error("Cookies must be enabled to use login")
-	var fullHostname = hostname + "/" + username
-	var err = _client.connect_to_url(fullHostname, protocols, false)
+	var err = _client.connect_to_url(base_host, protocols, false)
 	if(err != OK):
 		printerr("Got error while trying to connect to host: %s" % err)
 		show_error("Got error while trying to connect to host")
 		return
-	user_info = JSON.print({"username": username, "password": password,"register": register})
+	user_info = JSON.print({"username": username, "password": password,"register": register, "requestType": request_type})
 	return err
 
 # Once we have successfully connected to the host login
@@ -66,8 +61,6 @@ func _client_connected(protocol):
 	if user_info == null:
 		printerr("User info missing")
 		return
-	print("Sending user info %s" % user_info)
-	print("Sending base64 info %s" % Marshalls.utf8_to_base64(user_info))
 	_client.get_peer(1).put_packet(Marshalls.utf8_to_base64(user_info).to_utf8())
 	user_info = null
 
@@ -77,7 +70,7 @@ func _client_received(_p_id = 1):
 	var response = Marshalls.base64_to_utf8(Utils.decode_data(packet, true))
 	save_token(response)
 	disconnect_from_host()
-	get_parent().load_new_scene("res://lobby/lobby.tscn")
+	get_parent().load_new_scene(path_to_lobby_scene)
 
 func disconnect_from_host():
 	_client.disconnect_from_host(1000, "Bye bye!")
@@ -93,14 +86,3 @@ func save_token(token: String):
 	token_file.open("user://token.jwt", File.WRITE)
 	token_file.store_line(token)
 	token_file.close()
-
-
-# Currently used just for testing
-func load_token():
-	var token_file = File.new()
-	if not token_file.file_exists("user://token.jwt"):
-		printerr("Could not find JWT token, note: This application requires 3rd party cookies to be enabled")
-		# TODO Return to login screen
-		return # Error! We don't have a save to load.
-	token_file.open("user://token.jwt", File.READ)
-	return token_file.get_line()

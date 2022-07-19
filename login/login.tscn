@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://login-client/client_ui.gd" type="Script" id=1]
-[ext_resource path="res://login-client/client.gd" type="Script" id=2]
+[ext_resource path="res://login/login_ui.gd" type="Script" id=1]
+[ext_resource path="res://login/login.gd" type="Script" id=2]
 [ext_resource path="res://resources/fonts/vera-25.tres" type="DynamicFont" id=3]
 
 [node name="LoginNode" type="Control"]
@@ -79,14 +79,6 @@ margin_right = 610.0
 margin_bottom = 390.0
 text = "Register"
 
-[node name="Disconnect" type="Button" parent="Login"]
-margin_left = 376.0
-margin_top = 341.0
-margin_right = 610.0
-margin_bottom = 361.0
-rect_scale = Vector2( 1.00943, 1.1 )
-text = "Disconnect"
-
 [node name="ErrorMessage" type="RichTextLabel" parent="Login"]
 visible = false
 margin_left = 376.0
@@ -97,7 +89,5 @@ custom_colors/default_color = Color( 1, 0, 0, 1 )
 custom_fonts/normal_font = ExtResource( 3 )
 text = "Error"
 
-[connection signal="change_current_scene" from="Client" to="." method="_on_Client_change_current_scene"]
 [connection signal="pressed" from="Login/Connect" to="." method="_on_Connect_pressed"]
 [connection signal="pressed" from="Login/Register" to="." method="_on_Register_pressed"]
-[connection signal="pressed" from="Login/Disconnect" to="." method="_on_Disconnect_pressed"]
