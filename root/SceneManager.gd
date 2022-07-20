@@ -19,17 +19,7 @@ func _load_new_scene(path_to_new_scene : String):
 	root.get_tree()
 	var scene = load(path_to_new_scene)
 	var childNode = scene.instance()
+	childNode.connect("change_current_scene",self, "_load_new_scene")
 	childNode.set_name("CurrentScene")
 	root.add_child(childNode)
 	_transition_player.show_scene()
-	
-
-# Currently used just for testing
-func load_token():
-	var token_file = File.new()
-	if not token_file.file_exists("user://token.jwt"):
-		printerr("Could not find JWT token, note: This application requires 3rd party cookies to be enabled")
-		# TODO Return to login screen
-		return # Error! We don't have a save to load.
-	token_file.open("user://token.jwt", File.READ)
-	return token_file.get_line()

@@ -3,19 +3,19 @@ extends Node
 onready var _error_label = get_parent().get_node("Login/ErrorMessage")
 onready var _transition_player = get_parent().get_parent().get_node("TransitionScreen")
 
+var _client= WebSocketClient.new()
+
 # Used to store User Info while waiting to connect
 var user_info = null
 var request_type = "LOGIN"
 
-var _client = WebSocketClient.new()
-
 # TODO: Externalize hostname
 var base_host= ProjectSettings.get_setting("ws/hostname") + "/login"
-var path_to_lobby_scene="chat/chat.tscn"
+var path_to_lobby_scene="lobby/lobby.tscn"
 
 func _init():
 	_client.connect("connection_established", self, "_client_connected")
-	_client.connect("connection_error", self, "_client_disconnected")
+	_client.connect("connection_error", self, "_client_error")
 	_client.connect("connection_closed", self, "_client_disconnected")
 	_client.connect("server_close_request", self, "_client_close_request")
 	_client.connect("data_received", self, "_client_received")
@@ -40,6 +40,10 @@ func _process(_delta):
 
 
 
+func _client_error():
+	printerr("Got exception connecting to client")
+	show_error("Issue connecting with host")
+
 func _client_disconnected(clean=true):
 	print("Client just disconnected. Was clean: %s" % clean)
 
@@ -56,7 +60,7 @@ func login(username, password, protocols, register):
 
 # Once we have successfully connected to the host login
 func _client_connected(protocol):
-	print("Client just connected with protocol: %s" % protocol)
+	print("Client just connected with protocol %s" % protocol)
 	_client.get_peer(1).set_write_mode(WebSocketPeer.WRITE_MODE_TEXT)
 	if user_info == null:
 		printerr("User info missing")

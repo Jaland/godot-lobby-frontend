@@ -1,13 +1,15 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://chat/chat.gd" type="Script" id=1]
 [ext_resource path="res://chat/chat_ui.gd" type="Script" id=2]
 [ext_resource path="res://resources/styles/highlight-grey.tres" type="StyleBox" id=3]
 [ext_resource path="res://resources/styles/flat-grey.tres" type="StyleBox" id=4]
+[ext_resource path="res://resources/fonts/vera-25.tres" type="DynamicFont" id=5]
+[ext_resource path="res://resources/fonts/vera-bold-25.tres" type="DynamicFont" id=6]
 
 [sub_resource type="Theme" id=1]
 
-[node name="lobby-node" type="Control"]
+[node name="ChatNode" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 2 )
@@ -44,8 +46,11 @@ margin_top = 28.0
 margin_right = 234.0
 margin_bottom = 601.0
 size_flags_vertical = 3
+custom_fonts/bold_font = ExtResource( 6 )
+custom_fonts/normal_font = ExtResource( 5 )
 custom_styles/focus = ExtResource( 3 )
 custom_styles/normal = ExtResource( 4 )
+bbcode_enabled = true
 
 [node name="Disconnect" type="Button" parent="."]
 margin_left = 4.0
@@ -57,5 +62,5 @@ toggle_mode = true
 text = "Disconnect"
 
 [connection signal="ready" from="Client" to="Client" method="_connect_to_chat_service"]
-[connection signal="pressed" from="Chat/Message/Send" to="." method="_on_Send_pressed"]
+[connection signal="pressed" from="Chat/Message/Send" to="." method="_on_Send_pressed_game"]
 [connection signal="pressed" from="Disconnect" to="." method="_on_Disconnect_pressed_game"]

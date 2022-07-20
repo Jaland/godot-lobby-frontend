@@ -14,4 +14,4 @@ func decode_data(data, is_string):
 
 func _log(node, msg):
 	print(msg)
-	node.add_text(str(msg) + "\n")
+	node.append_bbcode(str(msg) + "\n")
