@@ -1,27 +1,30 @@
 extends Node
 
-var request_type = "LOBBY"
+onready var _root_client= get_parent().get_node("/root/RootNode/WebClient")
+onready var _chat_client = get_parent().get_node("chat/Client")
+
+var refresh_request = "LOBBY_REFRESH"
+var create_game_request = "CREATE_GAME"
 
 var _client = WebSocketClient.new()
 var _write_mode = WebSocketPeer.WRITE_MODE_BINARY
 var last_connected_client = 0
-var base_host= ProjectSettings.get_setting("ws/hostname") + "/lobby	"
+var base_host= ProjectSettings.get_setting("ws/hostname") + "/lobby"
 
-#func _init():
-#	_client.connect("connection_established", self, "_client_connected")
-#	_client.connect("connection_error", self, "_client_disconnected")
-#	_client.connect("connection_closed", self, "_client_disconnected")
-#	_client.connect("server_close_request", self, "_client_close_request")
-#	_client.connect("data_received", self, "_client_received")
-#
-#	_client.connect("peer_packet", self, "_client_received")
-#	_client.connect("peer_connected", self, "_peer_connected")
-#	_client.connect("connection_succeeded", self, "_client_connected", [])
-#	_client.connect("connection_failed", self, "_client_disconnected")
+func _init():
+	_client.connect("connection_established", self, "_client_connected")
+	_client.connect("connection_error", self, "_client_disconnected")
+	_client.connect("connection_closed", self, "_client_disconnected")
+	_client.connect("server_close_request", self, "_client_close_request")
+	_client.connect("data_received", self, "_client_received")
 
-	# I think this is how this works
-	# _client.connect("custom_signal", self, "_custom_method_")
 
+func _client_connected(protocol):
+	_client.get_peer(1).set_write_mode(WebSocketPeer.WRITE_MODE_TEXT)
+#	Send auth request
+	var token = _root_client.load_token()
+	var request = JSON.print({"token": token, "requestType": "AUTH"})
+	_send_data(request)
 
 func _client_close_request(code, reason):
 	print("Client closed request with code %s reason %s" % code, reason)
@@ -40,18 +43,14 @@ func _process(_delta):
 	if _client.get_connection_status() == WebSocketClient.CONNECTION_DISCONNECTED:
 		return
 	_client.poll()
-
-
-func _client_connected(protocol):
-	_client.get_peer(1).set_write_mode(WebSocketPeer.WRITE_MODE_TEXT)
-#	Send auth request
-	var token = get_parent().get_node("/root/RootNode").load_token()
-	var data = JSON.print({"token": token, "requestType": "AUTH"})
-	_send_data(data)
 	
-func send_message(message):
-	var chatData = JSON.print({"message": message, "requestType": request_type})
-	_send_data(chatData)
+func refresh_lobby():
+	var request = JSON.print({"requestType": refresh_request})
+	_send_data(request)
+	
+func create_game():
+	var request = JSON.print({"requestType": create_game_request})
+	_send_data(request)
 
 
 func _client_disconnected(clean=true):
@@ -65,10 +64,10 @@ func _client_received(_p_id = 1):
 	if(response.get_error() != OK):
 		printerr("Unable to parse json %s" % textResult)
 		return
-	print(response.result.message)
+	_chat_client.process_message(response)
 
 
-func _connect_to_chat_service():
+func _connect_to_lobby_service():
 	var err = _client.connect_to_url(base_host, [], false)
 	return err
 

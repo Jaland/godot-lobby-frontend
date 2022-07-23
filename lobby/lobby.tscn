@@ -28,7 +28,16 @@ margin_left = 222.0
 margin_top = 572.0
 margin_right = 297.0
 margin_bottom = 592.0
+rect_pivot_offset = Vector2( 38, 7 )
 text = "Join"
+
+[node name="Refresh" type="Button" parent="lobby-area"]
+margin_left = 35.0
+margin_top = 571.0
+margin_right = 110.0
+margin_bottom = 591.0
+rect_pivot_offset = Vector2( 38, 7 )
+text = "Refresh"
 
 [node name="Create" type="Button" parent="lobby-area"]
 anchor_left = -0.312
@@ -48,7 +57,11 @@ text = "Games"
 align = 1
 valign = 1
 
-[node name="Client" type="Node" parent="lobby-area"]
+[node name="Client" type="Node" parent="."]
 script = ExtResource( 4 )
 
 [connection signal="change_current_scene" from="chat" to="." method="_chat_propagateon_change_current_scene"]
+[connection signal="disconnect_from_game" from="chat" to="Client" method="disconnect_from_host"]
+[connection signal="pressed" from="lobby-area/Refresh" to="Client" method="refresh_lobby"]
+[connection signal="pressed" from="lobby-area/Create" to="Client" method="create_game"]
+[connection signal="ready" from="Client" to="Client" method="_connect_to_lobby_service"]

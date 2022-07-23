@@ -15,7 +15,6 @@ func _load_new_scene(path_to_new_scene : String):
 	yield(_transition_player, "faded_to_black")
 	var root = self
 	root.remove_child(root.get_node("CurrentScene"))
-	root.get_child(0).queue_free()
 	root.get_tree()
 	var scene = load(path_to_new_scene)
 	var childNode = scene.instance()

@@ -19,3 +19,5 @@ func _ready():
 func _chat_propagateon_change_current_scene(path_to_scene:String):
 	emit_signal("change_current_scene", path_to_scene)
 
+func _connect_to_lobby_service():
+	pass # Replace with function body.
