@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://login/login_ui.gd" type="Script" id=1]
-[ext_resource path="res://login/login.gd" type="Script" id=2]
+[ext_resource path="res://game/login/login_ui.gd" type="Script" id=1]
+[ext_resource path="res://game/login/login.gd" type="Script" id=2]
 [ext_resource path="res://resources/fonts/vera-25.tres" type="DynamicFont" id=3]
 
 [node name="LoginNode" type="Control"]
@@ -89,5 +89,7 @@ custom_colors/default_color = Color( 1, 0, 0, 1 )
 custom_fonts/normal_font = ExtResource( 3 )
 text = "Error"
 
-[connection signal="pressed" from="Login/Connect" to="." method="_on_Connect_pressed"]
-[connection signal="pressed" from="Login/Register" to="." method="_on_Register_pressed"]
+[connection signal="text_entered" from="Login/Username/Username" to="." method="_login"]
+[connection signal="text_entered" from="Login/Password/Password" to="." method="_login"]
+[connection signal="pressed" from="Login/Connect" to="." method="_login" binds= [ "connect-pressed" ]]
+[connection signal="pressed" from="Login/Register" to="." method="_register"]

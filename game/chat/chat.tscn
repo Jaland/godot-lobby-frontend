@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=2]
 
-[ext_resource path="res://chat/chat.gd" type="Script" id=1]
-[ext_resource path="res://chat/chat_ui.gd" type="Script" id=2]
+[ext_resource path="res://game/chat/chat.gd" type="Script" id=1]
+[ext_resource path="res://game/chat/chat_ui.gd" type="Script" id=2]
 [ext_resource path="res://resources/styles/highlight-grey.tres" type="StyleBox" id=3]
 [ext_resource path="res://resources/styles/flat-grey.tres" type="StyleBox" id=4]
 [ext_resource path="res://resources/fonts/vera-25.tres" type="DynamicFont" id=5]

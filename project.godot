@@ -17,7 +17,10 @@ config/icon="res://icon.png"
 
 [autoload]
 
-Utils="*res://utils.gd"
+LoggerUtils="*res://utlis/LoggerUtils.gd"
+WebSocketUtils="*res://utlis/WebSocketUtils.gd"
+GlobalVariables="*res://resources/GlobalVariables.gd"
+SceneManager="*res://root/load-screen/TransitionScreen.tscn"
 
 [config]
 
