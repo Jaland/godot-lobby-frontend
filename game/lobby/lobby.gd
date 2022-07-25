@@ -71,8 +71,6 @@ func process_join(data):
 	game_label.text=data.name
 	_game_lobby.show()
 	
-	
-
 
 ###################
 # Websocket Events #
@@ -83,7 +81,7 @@ func show_error(msg: String):
 	_error_popup.popup()
 
 func object_recieved(response):
-	_chat_client.process_message(response)
+	_chat_client.process_message(response)	
 	match response.type:
 		GlobalVariables.response_type.game_list:
 			process_refresh(response)

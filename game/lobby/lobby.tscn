@@ -16,9 +16,14 @@ script = ExtResource( 2 )
 
 [node name="Lobby" type="Control" parent="."]
 margin_left = 245.0
-margin_top = 5.0
+margin_top = 1.0
 margin_right = 1027.0
 margin_bottom = 598.0
+
+[node name="ColorRect" type="ColorRect" parent="Lobby"]
+margin_right = 776.0
+margin_bottom = 594.0
+color = Color( 0.12549, 0.12549, 0.12549, 1 )
 
 [node name="GameList" type="ItemList" parent="Lobby"]
 margin_top = 20.0
@@ -52,18 +57,18 @@ margin_bottom = -2.0
 text = "New Game"
 
 [node name="Label" type="Label" parent="Lobby"]
-margin_top = -4.0
+margin_top = -2.0
 margin_right = 774.0
-margin_bottom = 19.0
+margin_bottom = 21.0
 custom_fonts/font = ExtResource( 3 )
 text = "Games"
 align = 1
 valign = 1
 
 [node name="GameName" type="LineEdit" parent="Lobby"]
-margin_left = 507.0
+margin_left = 504.0
 margin_top = 571.0
-margin_right = 669.0
+margin_right = 666.0
 margin_bottom = 595.0
 
 [node name="Client" type="Node" parent="."]
