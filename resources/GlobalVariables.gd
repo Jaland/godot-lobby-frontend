@@ -19,14 +19,15 @@ export(Dictionary) var scene_path={
 export(Dictionary) var request_type={
 	login="LOGIN",
 	chat="CHAT",
-	refresh="REFRESH",
+	lobby_refresh="LOBBY_REFRESH",
 	create_game ="CREATE_GAME",
+	join_game ="JOIN_GAME",
 }
 
 
 #Request Types
 export(Dictionary) var response_type={
 	chat="chat",
-	refresh="game",
 	game_list ="game_list",	
+	join_game ="join_game",	
 }

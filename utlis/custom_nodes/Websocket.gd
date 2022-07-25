@@ -85,6 +85,10 @@ func authenticate():
 # Note: by default we will authenticate with the server when we connect should be overridden for unauthenticated connections such as login 
 func client_connected():
 	authenticate();
+	client_connected_authenticated()
+	
+func client_connected_authenticated():
+	pass
 	
 # Reports when the client has encountered an error
 # Note: `show_error` will still be called. Override _client_error to handle this differently

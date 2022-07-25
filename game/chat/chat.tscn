@@ -61,5 +61,6 @@ rect_scale = Vector2( 1.00943, 1.1 )
 toggle_mode = true
 text = "Disconnect"
 
-[connection signal="pressed" from="Chat/Message/Send" to="." method="_on_Send_pressed_game"]
+[connection signal="text_entered" from="Chat/Message/ChatTextSend" to="." method="_send_message"]
+[connection signal="pressed" from="Chat/Message/Send" to="." method="_send_message" binds= [ "ignored" ]]
 [connection signal="pressed" from="Disconnect" to="." method="_on_Disconnect_pressed_game"]

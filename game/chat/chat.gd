@@ -21,6 +21,6 @@ func send_message(message):
 	_parent_client.send_data(chatData)
 
 func process_message(response):
-	if(response.type != GlobalVariables.response_type.chat):
-		return;
-	LoggerUtils._log(_log_dest, response.message)
+	match response.type:
+		GlobalVariables.response_type.chat:
+			LoggerUtils._log(_log_dest, response.message)

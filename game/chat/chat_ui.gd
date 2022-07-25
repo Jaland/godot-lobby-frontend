@@ -22,7 +22,9 @@ signal disconnect_from_game
 ##################
 # Node Functions
 ##################
-func _on_Send_pressed_game():
+
+#Input just taken so we can connect the button and the input enter to the same method
+func _send_message(_ignored_input):
 	if _chat_input.text == "":
 		return
 	print("Send Pressed")
