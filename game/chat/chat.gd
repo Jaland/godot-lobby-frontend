@@ -17,8 +17,8 @@ onready var _parent_client = get_parent().get_node("../Client")
 # Node Functions
 ##################
 func send_message(message):
-	var chatData = JSON.print({"message": message, "requestType": GlobalVariables.request_type.chat})
-	_parent_client.send_data(chatData)
+	var request = {"message": message}
+	_parent_client.send_data(WebSocketUtils.object_to_json(request, GlobalVariables.request_type.chat))
 
 func process_message(response):
 	match response.type:

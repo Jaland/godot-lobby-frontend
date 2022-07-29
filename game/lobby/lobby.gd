@@ -10,7 +10,7 @@ extends "res://utlis/custom_nodes/Websocket.gd"
 ##################
 onready var _chat_client = get_parent().get_node("chat/Client")
 onready var _game_name = get_parent().get_node("Lobby/GameName")
-onready var _game_lobby = get_parent().get_node("GameLobby")
+onready var _game_lobby_client = get_parent().get_node("GameLobby/GameLobbyClient")
 onready var _error_popup = get_parent().get_node("ErrorPopup")
 
 
@@ -34,8 +34,7 @@ func _connect_to_lobby_service():
 	connect_to_websocket_path(websocket_path)
 	
 func refresh_lobby():
-	var request = JSON.print({"requestType": GlobalVariables.request_type.lobby_refresh })
-	send_data(request)
+	send_data(WebSocketUtils.request_to_json(GlobalVariables.request_type.lobby_refresh))
 
 func join_game():
 	var selected_games = _game_list_ui.get_selected_items()
@@ -43,12 +42,12 @@ func join_game():
 		show_error("Game must be selected first")
 		return
 	var gameId = _game_list_ui.get_item_metadata(selected_games[0])
-	var request = JSON.print({"requestType": GlobalVariables.request_type.join_game, "joinGameId": gameId})
-	send_data(request)
+	var request = {"joinGameId": gameId}
+	send_data(WebSocketUtils.object_to_json(request, GlobalVariables.request_type.join_game))
 	
 func create_game():
-	var request = JSON.print({"requestType": GlobalVariables.request_type.create_game , "name": _game_name.text})
-	send_data(request)
+	var request = {"name": _game_name.text}
+	send_data(WebSocketUtils.object_to_json(request, GlobalVariables.request_type.create_game))
 	
 
 
@@ -66,12 +65,6 @@ func process_refresh(data):
 		_game_list_ui.set_item_metadata(index, game.id)
 		index = index + 1
 
-func process_join(data):
-	var game_label=_game_lobby.get_node("GameLabel")
-	game_label.text=data.name
-	_game_lobby.show()
-	
-
 ###################
 # Websocket Events #
 ###################
@@ -82,11 +75,11 @@ func show_error(msg: String):
 
 func object_recieved(response):
 	_chat_client.process_message(response)	
+	_game_lobby_client.process_message(response)	
 	match response.type:
 		GlobalVariables.response_type.game_list:
 			process_refresh(response)
-		GlobalVariables.response_type.join_game:
-			process_join(response)
 			
-func client_connected_authenticated():
+func client_connected():
+	send_data(WebSocketUtils.request_to_json(GlobalVariables.request_type.initial_request))
 	refresh_lobby()

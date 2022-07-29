@@ -69,11 +69,6 @@ func send_data(data):
 func disconnect_from_host():
 	_client.disconnect_from_host(1000, "Client disconnecting...")
 
-func authenticate():
-	var token = WebSocketUtils.load_token()
-	var request = JSON.print({"token": token, "requestType": "AUTH"})
-	send_data(request)
-
 
 ###################
 # Overrideable Functions
@@ -82,13 +77,9 @@ func authenticate():
 ###################
 
 # Reports when the client has succesfully connected to the server
-# Note: by default we will authenticate with the server when we connect should be overridden for unauthenticated connections such as login 
 func client_connected():
-	authenticate();
-	client_connected_authenticated()
-	
-func client_connected_authenticated():
 	pass
+
 	
 # Reports when the client has encountered an error
 # Note: `show_error` will still be called. Override _client_error to handle this differently

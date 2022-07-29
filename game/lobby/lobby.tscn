@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://game/chat/chat.tscn" type="PackedScene" id=1]
 [ext_resource path="res://game/lobby/lobby_ui.gd" type="Script" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://game/lobby/lobby.gd" type="Script" id=4]
 [ext_resource path="res://resources/fonts/vera-bold-20.tres" type="DynamicFont" id=5]
 [ext_resource path="res://resources/fonts/vera-12.tres" type="DynamicFont" id=6]
+[ext_resource path="res://game/lobby/game_lobby/game_lobby.gd" type="Script" id=7]
 
 [node name="LobbyNode" type="Control"]
 anchor_right = 1.0
@@ -13,6 +14,8 @@ anchor_bottom = 1.0
 script = ExtResource( 2 )
 
 [node name="chat" parent="." instance=ExtResource( 1 )]
+anchor_right = 0.24
+margin_right = -1.76001
 
 [node name="Lobby" type="Control" parent="."]
 margin_left = 245.0
@@ -106,11 +109,14 @@ custom_fonts/font = ExtResource( 6 )
 text = "Users:"
 align = 1
 
-[node name="GameList" type="ItemList" parent="GameLobby"]
+[node name="UserList" type="ItemList" parent="GameLobby"]
 margin_left = 26.0
 margin_top = 102.0
 margin_right = 239.0
 margin_bottom = 464.0
+
+[node name="GameLobbyClient" type="Node" parent="GameLobby"]
+script = ExtResource( 7 )
 
 [node name="ErrorPopup" type="Popup" parent="."]
 margin_left = 398.0

@@ -20,6 +20,7 @@ export(Dictionary) var request_type={
 	login="LOGIN",
 	chat="CHAT",
 	lobby_refresh="LOBBY_REFRESH",
+	initial_request ="INITIAL_REQUEST",
 	create_game ="CREATE_GAME",
 	join_game ="JOIN_GAME",
 }
