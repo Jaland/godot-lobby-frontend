@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://game/chat/chat.tscn" type="PackedScene" id=1]
 [ext_resource path="res://game/lobby/lobby_ui.gd" type="Script" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://resources/fonts/vera-bold-20.tres" type="DynamicFont" id=5]
 [ext_resource path="res://resources/fonts/vera-12.tres" type="DynamicFont" id=6]
 [ext_resource path="res://game/lobby/game_lobby/game_lobby.gd" type="Script" id=7]
+[ext_resource path="res://resources/fonts/vera-10.tres" type="DynamicFont" id=8]
 
 [node name="LobbyNode" type="Control"]
 anchor_right = 1.0
@@ -89,7 +90,40 @@ margin_right = 786.0
 margin_bottom = 596.0
 color = Color( 0.262745, 0.262745, 0.262745, 1 )
 
-[node name="GameLabel" type="Label" parent="GameLobby"]
+[node name="UserList" type="ItemList" parent="GameLobby"]
+margin_left = 26.0
+margin_top = 102.0
+margin_right = 239.0
+margin_bottom = 464.0
+
+[node name="Label" type="Label" parent="GameLobby/UserList"]
+margin_left = 14.0
+margin_top = -21.0
+margin_right = 184.0
+margin_bottom = 14.0
+rect_pivot_offset = Vector2( 172, 15 )
+custom_fonts/font = ExtResource( 6 )
+text = "Users:"
+align = 1
+
+[node name="GameLobbyClient" type="Node" parent="GameLobby"]
+script = ExtResource( 7 )
+
+[node name="Disconnect" type="Button" parent="GameLobby"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 60.0
+margin_top = 476.0
+margin_right = -592.0
+margin_bottom = -97.0
+custom_fonts/font = ExtResource( 8 )
+text = "Disconnect From Game"
+
+[node name="GameInfo" type="Control" parent="GameLobby"]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="GameLabel" type="Label" parent="GameLobby/GameInfo"]
 margin_left = 198.0
 margin_top = 9.0
 margin_right = 542.0
@@ -99,24 +133,25 @@ custom_fonts/font = ExtResource( 5 )
 text = "Game Label"
 align = 1
 
-[node name="GameLabel" type="Label" parent="GameLobby/GameLabel"]
-margin_left = -158.0
-margin_top = 72.0
-margin_right = 12.0
-margin_bottom = 107.0
-rect_pivot_offset = Vector2( 172, 15 )
+[node name="IdLabel" type="RichTextLabel" parent="GameLobby/GameInfo"]
+margin_left = 303.0
+margin_top = 40.0
+margin_right = 647.0
+margin_bottom = 76.0
+rect_pivot_offset = Vector2( -805, 0 )
+custom_fonts/normal_font = ExtResource( 6 )
+bbcode_enabled = true
+bbcode_text = "[color=#800000]Game ID:[/color]"
+text = "Game ID:"
+
+[node name="IdHolder" type="Label" parent="GameLobby/GameInfo"]
+margin_left = 371.0
+margin_top = 40.0
+margin_right = 715.0
+margin_bottom = 76.0
+rect_pivot_offset = Vector2( -805, 0 )
 custom_fonts/font = ExtResource( 6 )
-text = "Users:"
-align = 1
-
-[node name="UserList" type="ItemList" parent="GameLobby"]
-margin_left = 26.0
-margin_top = 102.0
-margin_right = 239.0
-margin_bottom = 464.0
-
-[node name="GameLobbyClient" type="Node" parent="GameLobby"]
-script = ExtResource( 7 )
+text = "<GAME_ID>"
 
 [node name="ErrorPopup" type="Popup" parent="."]
 margin_left = 398.0
@@ -155,4 +190,5 @@ text = "Ok"
 [connection signal="pressed" from="Lobby/Refresh" to="Client" method="refresh_lobby"]
 [connection signal="pressed" from="Lobby/Create" to="Client" method="create_game"]
 [connection signal="ready" from="Client" to="Client" method="_connect_to_lobby_service"]
+[connection signal="pressed" from="GameLobby/Disconnect" to="GameLobby/GameLobbyClient" method="disconnect_from_game"]
 [connection signal="pressed" from="ErrorPopup/HidePopup" to="." method="_hide_popup"]

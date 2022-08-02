@@ -33,14 +33,6 @@ func login(username, password, register):
 	_client.get_peer(1).put_packet(Marshalls.utf8_to_base64(user_info).to_utf8())
 	user_info = null
 
-func save_token(token: String):
-	print("Saving token")
-	var token_file = File.new()
-	token_file.open("user://token.jwt", File.WRITE)
-	token_file.store_line(token)
-	token_file.close()
-
-
 ###################
 # Websocket Events #
 ###################
@@ -54,7 +46,7 @@ func show_error(error_text: String):
 func _client_received(_p_id = 1):
 	var packet = _client.get_peer(1).get_packet()
 	var response = Marshalls.base64_to_utf8(WebSocketUtils.decode_data(packet, true))
-	save_token(response)
+	WebSocketUtils.save_token(response)
 	disconnect_from_host()
 	SceneManager.load_new_scene(GlobalVariables.scene_path.lobby)
 

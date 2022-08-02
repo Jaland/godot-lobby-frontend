@@ -8,9 +8,12 @@ extends "res://utlis/custom_nodes/Websocket.gd"
 ###################
 # Node Objects
 ##################
+# Main Lobby Objects
 onready var _chat_client = get_parent().get_node("chat/Client")
 onready var _game_name = get_parent().get_node("Lobby/GameName")
+# Game Lobby Objects
 onready var _game_lobby_client = get_parent().get_node("GameLobby/GameLobbyClient")
+# Error Popup
 onready var _error_popup = get_parent().get_node("ErrorPopup")
 
 
@@ -48,11 +51,9 @@ func join_game():
 func create_game():
 	var request = {"name": _game_name.text}
 	send_data(WebSocketUtils.object_to_json(request, GlobalVariables.request_type.create_game))
-	
-
 
 ###################
-# Process Responces #
+# Process Responses #
 ###################
 
 func process_refresh(data):

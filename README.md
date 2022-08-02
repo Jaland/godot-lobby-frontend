@@ -1,6 +1,6 @@
-# Secret Vampire
+# Godot Lobby Example
 
-This is a first attempt at creating the frontend for my new hidden movement games
+The goal of this project is the creation of a basic lobby system in Godot that uses a backend server built in Java using the Quarkus framework, more information on that part of the project can be found [here](). While I was initially 
 
 Language: GDScript
 
@@ -18,11 +18,13 @@ Project can be exported manually using the gui or using the make file. To use th
 
 `make build` Creates the javascript program inside of the `target` directory
 
-`make load-site` Will copy over the files into `/var/www/html` which should be available on `localhost` by default
-
-> **Note:** you will also need to load the environment variables the first time from `resources/env/local.env` this can be done with `source resources/env/local.env`
+`make load-site` Will copy over the files into `/var/www/html` which should be available on `localhost` by default (assuming you are using Fedora linux)
 
 ## Install on Droplet
+
+If using this lobby system in order to give access to your project to your friends across the internet you will need to install it on a machine that allows for external access. There are many inexpensive options that can be setup nowadays such a Google Cloud, AWS free, or even locally if you are able to open up some ports (I would not recommend this for security reasons unless you really know what you are doing).
+
+Personally I found that the most simplistic option was creating a `Droplet` on (Digital Ocean)[https://m.do.co/c/5dca16f0ed95]. Creating and accessing it is very simple, the lowest level 1 gig of memory only cost like 7 dollars a month (which should be fine for initial testing), and you can easily turn it on and off as you please.
 
 ### Initial Setup
 
@@ -52,3 +54,11 @@ sudo systemctl start httpd
 cd secret-hitler-2.0/
 git pull
 ```
+
+## TODO's
+
+During login check if the user has a valid token if they do they automatically log them in.
+
+Save User's game information to cache so they can be more easily reinserted into the game.
+
+Add option for single session security where we validate the token and the session id match in the cache to prevent multiple session from opening (not sure if that is a good idea or not)

@@ -20,9 +20,11 @@ export(Dictionary) var request_type={
 	login="LOGIN",
 	chat="CHAT",
 	lobby_refresh="LOBBY_REFRESH",
+	join_lobby="JOIN_LOBBY",
 	initial_request ="INITIAL_REQUEST",
 	create_game ="CREATE_GAME",
 	join_game ="JOIN_GAME",
+	leave_game ="LEAVE_GAME",
 }
 
 
@@ -31,4 +33,7 @@ export(Dictionary) var response_type={
 	chat="chat",
 	game_list ="game_list",	
 	join_game ="join_game",	
+	leave_game ="leave_game",
 }
+
+export var LOBBY_GAME_ID="0"

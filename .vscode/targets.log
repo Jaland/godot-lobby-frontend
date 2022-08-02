@@ -1,4 +1,6 @@
 make all --print-data-base --no-builtin-variables --no-builtin-rules --question
+make: *** No rule to make target 'all'.  Stop.
+
 # GNU Make 4.3
 # Built for x86_64-redhat-linux-gnu
 # Copyright (C) 1988-2020 Free Software Foundation, Inc.
@@ -6,7 +8,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Tue Jul 26 08:39:53 2022
+# Make data base, printed on Mon Aug  1 08:35:24 2022
 
 # Variables
 
@@ -106,7 +108,7 @@ MAKEFILE_LIST := Makefile
 # automatic
 @F = $(notdir $@)
 # environment
-VSCODE_PID = 4971
+VSCODE_PID = 1561523
 # environment
 XDG_SESSION_TYPE = wayland
 # automatic
@@ -207,7 +209,7 @@ which_declare = declare -f
 # environment
 DEBUGINFOD_URLS = https://debuginfod.fedoraproject.org/ 
 # environment
-GIO_LAUNCHED_DESKTOP_FILE_PID = 4971
+GIO_LAUNCHED_DESKTOP_FILE_PID = 1561523
 # environment
 _ = /usr/bin/make
 # environment
@@ -282,10 +284,8 @@ Makefile:
 #  Modification time never checked.
 #  File has not been updated.
 
- 
-make: *** No rule to make target 'all'.  Stop.
-
 # Not a target:
+ 
 all:
 #  Command line target.
 #  Implicit rule search has been done.
@@ -351,6 +351,6 @@ restart-local:
 # strcache performance: lookups = 45 / hit rate = 28%
 # hash-table stats:
 # Load=32/8192=0%, Rehash=0, Collisions=0/45=0%
-# Finished Make data base on Tue Jul 26 08:39:53 2022
+# Finished Make data base on Mon Aug  1 08:35:24 2022
 
  
