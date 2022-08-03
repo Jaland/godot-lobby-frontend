@@ -16,37 +16,38 @@ script = ExtResource( 2 )
 
 [node name="chat" parent="." instance=ExtResource( 1 )]
 anchor_right = 0.24
-margin_right = -1.76001
+margin_right = 179.2
+margin_bottom = 0.0
 
 [node name="Lobby" type="Control" parent="."]
-margin_left = 245.0
+margin_left = 640.0
 margin_top = 1.0
-margin_right = 1027.0
-margin_bottom = 598.0
+margin_right = 1920.0
+margin_bottom = 1081.0
 
 [node name="ColorRect" type="ColorRect" parent="Lobby"]
-margin_right = 776.0
-margin_bottom = 594.0
+margin_right = 1280.0
+margin_bottom = 1080.0
 color = Color( 0.12549, 0.12549, 0.12549, 1 )
 
 [node name="GameList" type="ItemList" parent="Lobby"]
 margin_top = 20.0
-margin_right = 773.0
-margin_bottom = 571.0
+margin_right = 1280.0
+margin_bottom = 1060.0
 
 [node name="join" type="Button" parent="Lobby"]
-margin_left = 131.0
-margin_top = 571.0
-margin_right = 206.0
-margin_bottom = 591.0
+margin_left = 250.0
+margin_top = 1057.0
+margin_right = 430.0
+margin_bottom = 1078.0
 rect_pivot_offset = Vector2( 38, 7 )
 text = "Join"
 
 [node name="Refresh" type="Button" parent="Lobby"]
-margin_left = 35.0
-margin_top = 571.0
-margin_right = 110.0
-margin_bottom = 591.0
+margin_left = 28.0
+margin_top = 1054.0
+margin_right = 236.0
+margin_bottom = 1079.0
 rect_pivot_offset = Vector2( 38, 7 )
 text = "Refresh"
 
@@ -54,15 +55,15 @@ text = "Refresh"
 anchor_left = -0.312
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 926.984
-margin_top = 571.0
-margin_right = -17.0
-margin_bottom = -2.0
+margin_left = 1535.36
+margin_top = 1059.0
+margin_right = -2.0
+margin_bottom = -1.0
 text = "New Game"
 
 [node name="Label" type="Label" parent="Lobby"]
 margin_top = -2.0
-margin_right = 774.0
+margin_right = 1280.0
 margin_bottom = 21.0
 custom_fonts/font = ExtResource( 3 )
 text = "Games"
@@ -70,31 +71,31 @@ align = 1
 valign = 1
 
 [node name="GameName" type="LineEdit" parent="Lobby"]
-margin_left = 504.0
-margin_top = 571.0
-margin_right = 666.0
-margin_bottom = 595.0
+margin_left = 825.0
+margin_top = 1058.0
+margin_right = 1138.0
+margin_bottom = 1082.0
+placeholder_text = "Game Name"
 
 [node name="Client" type="Node" parent="."]
 script = ExtResource( 4 )
 
 [node name="GameLobby" type="Control" parent="."]
-visible = false
-margin_left = 239.0
+margin_left = 640.0
 margin_top = 1.0
-margin_right = 1021.0
-margin_bottom = 594.0
+margin_right = 1920.0
+margin_bottom = 1081.0
 
 [node name="ColorRect" type="ColorRect" parent="GameLobby"]
-margin_right = 786.0
-margin_bottom = 596.0
+margin_right = 1280.0
+margin_bottom = 1080.0
 color = Color( 0.262745, 0.262745, 0.262745, 1 )
 
 [node name="UserList" type="ItemList" parent="GameLobby"]
 margin_left = 26.0
 margin_top = 102.0
-margin_right = 239.0
-margin_bottom = 464.0
+margin_right = 298.0
+margin_bottom = 910.0
 
 [node name="Label" type="Label" parent="GameLobby/UserList"]
 margin_left = 14.0
@@ -112,10 +113,10 @@ script = ExtResource( 7 )
 [node name="Disconnect" type="Button" parent="GameLobby"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 60.0
-margin_top = 476.0
-margin_right = -592.0
-margin_bottom = -97.0
+margin_left = 26.0
+margin_top = 918.0
+margin_right = -981.0
+margin_bottom = -91.0
 custom_fonts/font = ExtResource( 8 )
 text = "Disconnect From Game"
 
@@ -124,20 +125,20 @@ margin_right = 40.0
 margin_bottom = 40.0
 
 [node name="GameLabel" type="Label" parent="GameLobby/GameInfo"]
-margin_left = 198.0
-margin_top = 9.0
-margin_right = 542.0
-margin_bottom = 45.0
+margin_left = 465.0
+margin_top = 6.0
+margin_right = 809.0
+margin_bottom = 42.0
 rect_pivot_offset = Vector2( 172, 15 )
 custom_fonts/font = ExtResource( 5 )
 text = "Game Label"
 align = 1
 
 [node name="IdLabel" type="RichTextLabel" parent="GameLobby/GameInfo"]
-margin_left = 303.0
-margin_top = 40.0
-margin_right = 647.0
-margin_bottom = 76.0
+margin_left = 578.0
+margin_top = 53.0
+margin_right = 922.0
+margin_bottom = 89.0
 rect_pivot_offset = Vector2( -805, 0 )
 custom_fonts/normal_font = ExtResource( 6 )
 bbcode_enabled = true
@@ -145,19 +146,19 @@ bbcode_text = "[color=#800000]Game ID:[/color]"
 text = "Game ID:"
 
 [node name="IdHolder" type="Label" parent="GameLobby/GameInfo"]
-margin_left = 371.0
-margin_top = 40.0
-margin_right = 715.0
-margin_bottom = 76.0
+margin_left = 639.0
+margin_top = 53.0
+margin_right = 983.0
+margin_bottom = 89.0
 rect_pivot_offset = Vector2( -805, 0 )
 custom_fonts/font = ExtResource( 6 )
 text = "<GAME_ID>"
 
 [node name="ErrorPopup" type="Popup" parent="."]
-margin_left = 398.0
-margin_top = 157.0
-margin_right = 746.0
-margin_bottom = 326.0
+margin_left = 967.0
+margin_top = 401.0
+margin_right = 1298.0
+margin_bottom = 578.0
 
 [node name="Background" type="ColorRect" parent="ErrorPopup"]
 margin_right = 318.0

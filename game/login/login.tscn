@@ -7,6 +7,8 @@
 [node name="LoginNode" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_right = 896.0
+margin_bottom = 480.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 7
@@ -18,73 +20,81 @@ script = ExtResource( 2 )
 
 [node name="Login" type="Panel" parent="."]
 margin_top = 1.0
-margin_right = 1021.0
-margin_bottom = 600.0
+margin_right = 1920.0
+margin_bottom = 1081.0
+grow_horizontal = 2
+grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Username" type="Container" parent="Login"]
+[node name="Username" type="Control" parent="Login"]
+anchor_right = 0.015
+anchor_bottom = 0.039
+margin_right = -28.8
+margin_bottom = -42.12
 
 [node name="Username" type="LineEdit" parent="Login/Username"]
-margin_left = 432.0
-margin_top = 222.0
-margin_right = 642.0
-margin_bottom = 246.0
+margin_left = 971.0
+margin_top = 393.0
+margin_right = 1349.0
+margin_bottom = 462.0
 focus_next = NodePath("../../Password/Password Label")
 custom_fonts/font = ExtResource( 3 )
 
 [node name="UsernameLabel" type="RichTextLabel" parent="Login/Username"]
-margin_left = 335.0
-margin_top = 222.0
-margin_right = 427.0
-margin_bottom = 246.0
+margin_left = 703.0
+margin_top = 403.0
+margin_right = 938.0
+margin_bottom = 464.0
 custom_fonts/normal_font = ExtResource( 3 )
 text = "Username"
 
-[node name="Password" type="Container" parent="Login"]
+[node name="Password" type="Control" parent="Login"]
 margin_right = 40.0
 margin_bottom = 40.0
 
 [node name="Password" type="LineEdit" parent="Login/Password"]
-margin_left = 430.804
-margin_top = 256.564
-margin_right = 640.804
-margin_bottom = 280.564
+margin_left = 972.0
+margin_top = 482.0
+margin_right = 1341.0
+margin_bottom = 544.0
 focus_next = NodePath("../../Connect")
 focus_previous = NodePath("../../Username/Username")
 custom_fonts/font = ExtResource( 3 )
 secret = true
 
 [node name="Password Label" type="RichTextLabel" parent="Login/Password"]
-margin_left = 336.0
-margin_top = 258.0
-margin_right = 428.0
-margin_bottom = 282.0
+margin_left = 706.0
+margin_top = 480.0
+margin_right = 930.0
+margin_bottom = 534.0
 custom_fonts/normal_font = ExtResource( 3 )
 text = "Password"
 
 [node name="Connect" type="Button" parent="Login"]
-margin_left = 374.0
-margin_top = 314.0
-margin_right = 608.0
-margin_bottom = 334.0
+margin_left = 785.0
+margin_top = 599.0
+margin_right = 1097.0
+margin_bottom = 652.0
 focus_next = NodePath("../Register")
 focus_previous = NodePath("../Password/Password")
+custom_fonts/font = ExtResource( 3 )
 text = "Connect"
 
 [node name="Register" type="Button" parent="Login"]
-margin_left = 376.0
-margin_top = 370.0
-margin_right = 610.0
-margin_bottom = 390.0
+margin_left = 788.0
+margin_top = 667.0
+margin_right = 1098.0
+margin_bottom = 729.0
+custom_fonts/font = ExtResource( 3 )
 text = "Register"
 
 [node name="ErrorMessage" type="RichTextLabel" parent="Login"]
 visible = false
-margin_left = 376.0
-margin_top = 285.0
-margin_right = 626.0
-margin_bottom = 310.0
+margin_left = 799.0
+margin_top = 555.0
+margin_right = 1049.0
+margin_bottom = 580.0
 custom_colors/default_color = Color( 1, 0, 0, 1 )
 custom_fonts/normal_font = ExtResource( 3 )
 text = "Error"

@@ -26,6 +26,12 @@ SceneManager="*res://root/load-screen/TransitionScreen.tscn"
 
 name="TEST"
 
+[display]
+
+window/size/width=1920
+window/size/height=1080
+window/stretch/mode="viewport"
+
 [gdnative]
 
 singletons=[  ]
