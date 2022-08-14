@@ -17,6 +17,12 @@ onready var _game_label=self.get_parent().get_node("GameInfo/GameLabel")
 onready var _game_id_holder=self.get_parent().get_node("GameInfo/IdHolder")
 onready var _user_list=self.get_parent().get_node("UserList")
 
+###################
+# Textures
+##################
+
+var _disconnected_icon_texture = Texture.new()
+
 
 
 ###################
@@ -24,6 +30,9 @@ onready var _user_list=self.get_parent().get_node("UserList")
 ##################
 var websocket_path= "/lobby"
 
+
+func _ready():
+	_disconnected_icon_texture = load("res://resources/textures/lobby/disconnected.png")
 
 ###################
 # Node Methods
@@ -38,8 +47,8 @@ func disconnect_from_game():
 ###################
 
 func process_join(data):
-	populate_game_label(data)
-	populate_user_list(data)
+	_populate_game_label(data.game)
+	_populate_user_list(data.game)
 	_game_lobby.show()
 	WebSocketUtils.save_game_info(data.game.id)
 	
@@ -48,20 +57,27 @@ func process_leave(data):
 	WebSocketUtils.save_game_info(GlobalVariables.LOBBY_GAME_ID)
 	
 
+func process_update_game_info(data):
+	_populate_user_list(data)
+	
+
 ###################
-# Process Response #
+# Helper Methods #
 ###################
 
-func populate_game_label(data):
-	_game_label.text = data.game.name if (data.game.name != null) else "Custom Game"
-	_game_id_holder.text=data.game.id
+func _populate_game_label(data):
+	_game_label.text = data.name if (data.name != null) else "Custom Game"
+	_game_id_holder.text=data.id
 
-func populate_user_list(data):
+func _populate_user_list(data):
 	_user_list.clear()
-	var user_list = data.game.users
+	var user_list = data.users
 	var index =  _user_list.get_item_count();
 	for user in user_list:
-		_user_list.add_item(user)
+		if user.connected:
+			_user_list.add_item(user.username)
+		else:
+			_user_list.add_item(user.username, _disconnected_icon_texture)			
 		index = index + 1
 
 
@@ -75,5 +91,7 @@ func process_message(response):
 			process_join(response)
 		GlobalVariables.response_type.leave_game:
 			process_leave(response)
+		GlobalVariables.response_type.game:
+			process_update_game_info(response)
 			
 

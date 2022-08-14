@@ -1,20 +1,27 @@
+###################
+# WebsocketUtils
+#
+# Utility Class for calling/reciving information from the server
+##################
 extends Node
 
 var gameInfoFile="user://game.info"
 export var tokenFile="user://token.jwt"
 
-#Encodes Data when passingto server
+# Encodes Data when passing to server
 func encode_data(data, mode):
 	if mode == WebSocketPeer.WRITE_MODE_TEXT:
 		return data.to_utf8()
 	return var2bytes(data)
 
-#Decodes data retrieved from server
+# Decodes data retrieved from server
 func decode_data(data, is_string):
 	if is_string:
 		return data.get_string_from_utf8()
 	return bytes2var(data)
 	
+# Converts objects into server request 
+# Note: Automatically overwrites the gameId to include the game stored in the users local cache 
 func object_to_json(object, requestType:String) -> String:
 	object.requestType = requestType
 	var gameInfo = load_game_info()
@@ -23,7 +30,7 @@ func object_to_json(object, requestType:String) -> String:
 	var jsonObject = JSON.print(object)
 	return jsonObject
 	
-	
+# Used to create request that does not require a body
 func request_to_json(requestType:String) -> String:
 	return object_to_json({}, requestType)
 	
@@ -55,6 +62,8 @@ func load_game_info():
 	var response = JSON.parse(gameInfoString)
 	return response.result
 
+# Saves Token info
+# Requires users to allow for Cookies on HTML5
 func save_token(token: String):
 	print("Saving token")
 	var token_file = File.new()
@@ -62,6 +71,7 @@ func save_token(token: String):
 	token_file.store_line(token)
 	token_file.close()
 	
+# Loads Previously Saved Token Info
 func load_token() -> String:
 	var token_file = File.new()
 	if not token_file.file_exists(tokenFile):
@@ -71,3 +81,4 @@ func load_token() -> String:
 	var token:String = token_file.get_line()
 	token_file.close()
 	return token
+

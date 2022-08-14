@@ -8,7 +8,7 @@ make: *** No rule to make target 'all'.  Stop.
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Mon Aug  1 08:35:24 2022
+# Make data base, printed on Sun Aug 14 17:02:44 2022
 
 # Variables
 
@@ -63,7 +63,7 @@ IP_ADDRESS = 162.243.168.138
 # environment
 LANG = C
 # environment
-XAUTHORITY = /run/user/1000/.mutter-Xwaylandauth.970HP1
+XAUTHORITY = /run/user/1000/.mutter-Xwaylandauth.VB1XQ1
 # default
 .LOADED := 
 # default
@@ -108,13 +108,13 @@ MAKEFILE_LIST := Makefile
 # automatic
 @F = $(notdir $@)
 # environment
-VSCODE_PID = 1561523
+VSCODE_PID = 7474
 # environment
 XDG_SESSION_TYPE = wayland
 # automatic
 ?D = $(patsubst %/,%,$(dir $?))
 # environment
-SESSION_MANAGER = local/unix:@/tmp/.ICE-unix/2035,unix/unix:/tmp/.ICE-unix/2035
+SESSION_MANAGER = local/unix:@/tmp/.ICE-unix/1858,unix/unix:/tmp/.ICE-unix/1858
 # automatic
 *F = $(notdir $*)
 # environment
@@ -163,7 +163,7 @@ MODULESHOME = /usr/share/lmod/lmod
 # environment
 LMOD_sys = Linux
 # environment
-INVOCATION_ID = a894b82af9a04a549681d560a6e06fad
+INVOCATION_ID = cde0e4559cfe42e8acce0ea364567b98
 # environment
 USERNAME = jland
 # environment
@@ -189,7 +189,7 @@ BASH_ENV = /usr/share/lmod/lmod/init/bash
 # makefile
 .DEFAULT_GOAL := build
 # environment
-SYSTEMD_EXEC_PID = 2073
+SYSTEMD_EXEC_PID = 1892
 # environment
 MODULEPATH_ROOT = /usr/share/modulefiles
 # environment
@@ -203,19 +203,19 @@ USER = root
 # default
 MAKE_VERSION := 4.3
 # environment
-MANAGERPID = 1913
+MANAGERPID = 1741
 # environment
 which_declare = declare -f
 # environment
 DEBUGINFOD_URLS = https://debuginfod.fedoraproject.org/ 
 # environment
-GIO_LAUNCHED_DESKTOP_FILE_PID = 1561523
+GIO_LAUNCHED_DESKTOP_FILE_PID = 7474
 # environment
 _ = /usr/bin/make
 # environment
 XDG_RUNTIME_DIR = /run/user/1000
 # environment
-JOURNAL_STREAM = 8:39159
+JOURNAL_STREAM = 8:26623
 # environment
 XDG_SESSION_CLASS = user
 # environment
@@ -253,9 +253,9 @@ GDMSESSION = gnome
 
 # Directories
 
-# . (device 41, inode 19933154): 20 files, no impossibilities.
+# . (device 41, inode 19933154): 21 files, no impossibilities.
 
-# 20 files, no impossibilities in 1 directories.
+# 21 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
@@ -285,7 +285,6 @@ Makefile:
 #  File has not been updated.
 
 # Not a target:
- 
 all:
 #  Command line target.
 #  Implicit rule search has been done.
@@ -345,12 +344,13 @@ restart-local:
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 32 / storage = 310 B / avg = 9 B
-# current buf: size = 8162 B / used = 310 B / count = 32 / avg = 9 B
+# strcache buffers: 1 (0) / strings = 33 / storage = 318 B / avg = 9 B
+# current buf: size = 8162 B / used = 318 B / count = 33 / avg = 9 B
 
-# strcache performance: lookups = 45 / hit rate = 28%
+# strcache performance: lookups = 46 / hit rate = 28%
 # hash-table stats:
-# Load=32/8192=0%, Rehash=0, Collisions=0/45=0%
-# Finished Make data base on Mon Aug  1 08:35:24 2022
+ 
+# Load=33/8192=0%, Rehash=0, Collisions=0/46=0%
+# Finished Make data base on Sun Aug 14 17:02:44 2022
 
  

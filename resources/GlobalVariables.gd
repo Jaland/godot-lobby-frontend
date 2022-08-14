@@ -34,6 +34,8 @@ export(Dictionary) var response_type={
 	game_list ="game_list",	
 	join_game ="join_game",	
 	leave_game ="leave_game",
+#	This will be the most common response, used for updating game information
+	game ="game",
 }
 
 export var LOBBY_GAME_ID="0"

@@ -96,6 +96,7 @@ margin_left = 26.0
 margin_top = 102.0
 margin_right = 298.0
 margin_bottom = 910.0
+fixed_icon_size = Vector2( 20, 20 )
 
 [node name="Label" type="Label" parent="GameLobby/UserList"]
 margin_left = 14.0

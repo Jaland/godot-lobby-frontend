@@ -1,13 +1,17 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://game/chat/chat.gd" type="Script" id=1]
 [ext_resource path="res://game/chat/chat_ui.gd" type="Script" id=2]
 [ext_resource path="res://resources/styles/highlight-grey.tres" type="StyleBox" id=3]
 [ext_resource path="res://resources/styles/flat-grey.tres" type="StyleBox" id=4]
-[ext_resource path="res://resources/fonts/vera-25.tres" type="DynamicFont" id=5]
-[ext_resource path="res://resources/fonts/vera-bold-25.tres" type="DynamicFont" id=6]
+[ext_resource path="res://resources/fonts/Vera.ttf" type="DynamicFontData" id=5]
+[ext_resource path="res://resources/fonts/vera-bold-20.tres" type="DynamicFont" id=6]
 
 [sub_resource type="Theme" id=1]
+
+[sub_resource type="DynamicFont" id=2]
+size = 20
+font_data = ExtResource( 5 )
 
 [node name="ChatNode" type="Control"]
 anchor_right = 0.236328
@@ -30,36 +34,36 @@ rect_scale = Vector2( 1.031, 0.994872 )
 theme = SubResource( 1 )
 
 [node name="Message" type="HBoxContainer" parent="Chat"]
-margin_right = 640.0
+margin_right = 851.0
 margin_bottom = 24.0
 
 [node name="ChatTextSend" type="LineEdit" parent="Chat/Message"]
-margin_right = 593.0
+margin_right = 804.0
 margin_bottom = 24.0
 size_flags_horizontal = 3
 placeholder_text = "Enter some text to send..."
 
 [node name="Send" type="Button" parent="Chat/Message"]
-margin_left = 597.0
-margin_right = 640.0
+margin_left = 808.0
+margin_right = 851.0
 margin_bottom = 24.0
 text = "Send"
 
 [node name="ChatArea" type="RichTextLabel" parent="Chat"]
 margin_top = 28.0
-margin_right = 640.0
-margin_bottom = 1057.0
+margin_right = 851.0
+margin_bottom = 1537.0
 size_flags_vertical = 3
 custom_fonts/bold_font = ExtResource( 6 )
-custom_fonts/normal_font = ExtResource( 5 )
+custom_fonts/normal_font = SubResource( 2 )
 custom_styles/focus = ExtResource( 3 )
 custom_styles/normal = ExtResource( 4 )
 bbcode_enabled = true
 
 [node name="Disconnect" type="Button" parent="Chat"]
-margin_top = 1061.0
-margin_right = 640.0
-margin_bottom = 1081.0
+margin_top = 1541.0
+margin_right = 851.0
+margin_bottom = 1561.0
 toggle_mode = true
 text = "Disconnect"
 
