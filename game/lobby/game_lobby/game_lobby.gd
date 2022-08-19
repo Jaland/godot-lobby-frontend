@@ -21,7 +21,7 @@ onready var _user_list=self.get_parent().get_node("UserList")
 # Textures
 ##################
 
-var _disconnected_icon_texture = Texture.new()
+var _disconnected_icon_texture
 
 
 
@@ -42,6 +42,15 @@ func disconnect_from_game():
 	_lobby_client.send_data(WebSocketUtils.request_to_json(
 		GlobalVariables.request_type.leave_game))
 
+
+###################
+# Button/UI Methods
+##################
+	
+func start_game():
+	_lobby_client.send_data(WebSocketUtils.request_to_json(
+		GlobalVariables.request_type.start_game))
+
 ###################
 # Process Responses #
 ###################
@@ -51,14 +60,20 @@ func process_join(data):
 	_populate_user_list(data.game)
 	_game_lobby.show()
 	WebSocketUtils.save_game_info(data.game.id)
+	if(data.game.state != GlobalVariables.game_state.waiting):
+		_put_player_in_game()
 	
-func process_leave(data):
+func process_leave(_data):
 	_game_lobby.hide()
 	WebSocketUtils.save_game_info(GlobalVariables.LOBBY_GAME_ID)
+	_lobby_client.refresh_lobby()
 	
 
 func process_update_game_info(data):
 	_populate_user_list(data)
+	
+func process_start_game(_data):
+	_put_player_in_game()
 	
 
 ###################
@@ -80,6 +95,9 @@ func _populate_user_list(data):
 			_user_list.add_item(user.username, _disconnected_icon_texture)			
 		index = index + 1
 
+func _put_player_in_game():
+	_lobby_client.disconnect_from_host()
+	SceneManager.load_new_scene(GlobalVariables.scene_path.walking_simulator)
 
 ###################
 # Websocket Events #
@@ -93,5 +111,6 @@ func process_message(response):
 			process_leave(response)
 		GlobalVariables.response_type.game:
 			process_update_game_info(response)
+		GlobalVariables.response_type.start_game:
+			process_start_game(response)
 			
-

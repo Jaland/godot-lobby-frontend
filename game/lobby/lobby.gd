@@ -36,6 +36,10 @@ var websocket_path= "/lobby"
 func _connect_to_lobby_service():
 	connect_to_websocket_path(websocket_path)
 	
+###################
+# Button/UI Methods
+##################
+	
 func refresh_lobby():
 	send_data(WebSocketUtils.request_to_json(GlobalVariables.request_type.lobby_refresh))
 
@@ -83,4 +87,3 @@ func object_recieved(response):
 			
 func client_connected():
 	send_data(WebSocketUtils.request_to_json(GlobalVariables.request_type.initial_request))
-	refresh_lobby()

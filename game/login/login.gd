@@ -15,8 +15,7 @@ signal client_connected
 # Node Properties
 ##################
 
-# Used to store User Info while waiting to connect
-#var user_info = null
+# This property is used by the websocket node to determine the websocket server path
 var websocket_path= "/login"
 
 
@@ -29,6 +28,7 @@ func login(username, password, register):
 	connect_to_websocket_path(websocket_path)
 	var user_info = JSON.print({"username": username, "password": password,
 			"register": register, "requestType": GlobalVariables.request_type.login})
+	WebSocketUtils.save_user_info(username)
 	yield(self, "client_connected")
 	_client.get_peer(1).put_packet(Marshalls.utf8_to_base64(user_info).to_utf8())
 	user_info = null

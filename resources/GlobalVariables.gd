@@ -12,7 +12,8 @@ extends Node
 export var base_path = "game/"
 export(Dictionary) var scene_path={
 	lobby=base_path + "lobby/lobby.tscn",
-	login=base_path + "login/login.tscn"
+	login=base_path + "login/login.tscn",
+	walking_simulator=base_path + "walking_simulator/game.tscn"
 }
 
 #Request Types
@@ -25,6 +26,8 @@ export(Dictionary) var request_type={
 	create_game ="CREATE_GAME",
 	join_game ="JOIN_GAME",
 	leave_game ="LEAVE_GAME",
+	start_game ="START_GAME",
+	load_assets = "LOAD_ASSETS",
 }
 
 
@@ -36,6 +39,22 @@ export(Dictionary) var response_type={
 	leave_game ="leave_game",
 #	This will be the most common response, used for updating game information
 	game ="game",
+	start_game ="start_game",
+	load_assets ="load_assets",
+	map_setup ="map_setup",
+}
+
+
+
+#Request Types
+export(Dictionary) var game_state={
+  waiting="WAITING",
+  loading="LOADING",
+  started="STARTED",
+  finished="FINISHED",
+  aborted="ABORTED",
+  error="ERROR",
+
 }
 
 export var LOBBY_GAME_ID="0"

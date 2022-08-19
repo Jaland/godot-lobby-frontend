@@ -6,6 +6,7 @@
 extends Node
 
 var gameInfoFile="user://game.info"
+var userInfoFile="user://user.info"
 export var tokenFile="user://token.jwt"
 
 # Encodes Data when passing to server
@@ -61,6 +62,33 @@ func load_game_info():
 		return default_game_info
 	var response = JSON.parse(gameInfoString)
 	return response.result
+	
+	
+func save_user_info(username: String):
+	print("Saving user")
+	var user_file = File.new()
+	user_file.open(userInfoFile, File.WRITE)
+	user_file.store_line(JSON.print({"username" : username}))
+	user_file.close()
+	
+
+# Returns in the form of {gameId: <GAME_ID>}
+func load_user_info():
+	var user_file = File.new()
+	if not user_file.file_exists(userInfoFile):
+		print("UserInfo Missing must reauthenticate")
+		push_error("UserInfo Missing must reauthenticate")
+	user_file.open(userInfoFile, File.READ)
+	var userInfoString:String = user_file.get_line()
+	user_file.close()
+	var response = JSON.parse(userInfoString)
+	return response.result
+	
+
+# Removes existing game if from cache
+func clear_game_info():
+	var game_file = Directory.new()
+	game_file.remove(gameInfoFile)
 
 # Saves Token info
 # Requires users to allow for Cookies on HTML5

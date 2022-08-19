@@ -1,0 +1,47 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://resources/textures/walking_simulator/grass-small.png" type="Texture" id=1]
+[ext_resource path="res://game/walking_simulator/game.gd" type="Script" id=2]
+[ext_resource path="res://game/chat/chat.tscn" type="PackedScene" id=3]
+[ext_resource path="res://game/menu/menu.tscn" type="PackedScene" id=4]
+
+[node name="OverworldNode" type="Node2D"]
+
+[node name="TextureRect" type="TextureRect" parent="."]
+margin_left = -3780.0
+margin_top = -2236.0
+margin_right = 6454.0
+margin_bottom = 4108.0
+texture = ExtResource( 1 )
+stretch_mode = 2
+
+[node name="Client" type="Node" parent="."]
+script = ExtResource( 2 )
+
+[node name="chat" parent="." instance=ExtResource( 3 )]
+margin_right = 640.0
+margin_bottom = 1080.0
+
+[node name="SpawnPoints" type="Node" parent="."]
+
+[node name="point_1" type="Node2D" parent="SpawnPoints"]
+position = Vector2( 823, 192 )
+
+[node name="point_2" type="Node2D" parent="SpawnPoints"]
+position = Vector2( 1325, 892 )
+
+[node name="point_3" type="Node2D" parent="SpawnPoints"]
+position = Vector2( 1645, 135 )
+
+[node name="point_4" type="Node2D" parent="SpawnPoints"]
+position = Vector2( 1375, 554 )
+
+[node name="Players" type="Node" parent="."]
+
+[node name="Popup" parent="." instance=ExtResource( 4 )]
+margin_left = 951.0
+margin_top = 332.0
+margin_right = 1071.0
+margin_bottom = 482.0
+
+[connection signal="ready" from="Client" to="Client" method="_connect_to_game"]

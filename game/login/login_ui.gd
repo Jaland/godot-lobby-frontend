@@ -5,14 +5,12 @@
 ##################
 extends Control
 
-
 ##################
 # UI Objects
 ##################
 onready var _client = $Client
 onready var _user_name = $Login/Username/Username
 onready var _password = $Login/Password/Password
-
 
 ##################
 # Node Fuctions

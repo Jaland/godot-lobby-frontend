@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://game/menu/menu.gd" type="Script" id=1]
+[ext_resource path="res://game/menu/menu_ui.gd" type="Script" id=2]
+
+[node name="Popup" type="WindowDialog"]
+margin_right = 120.0
+margin_bottom = 150.0
+window_title = "Options"
+resizable = true
+script = ExtResource( 2 )
+
+[node name="Exit" type="Button" parent="."]
+margin_left = 14.0
+margin_top = 115.0
+margin_right = 105.0
+margin_bottom = 135.0
+text = "Leave Game"
+
+[node name="Client" type="Node" parent="."]
+script = ExtResource( 1 )
+
+[connection signal="pressed" from="Exit" to="Client" method="exit_game"]

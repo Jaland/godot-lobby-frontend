@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://game/chat/chat.tscn" type="PackedScene" id=1]
 [ext_resource path="res://game/lobby/lobby_ui.gd" type="Script" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://resources/fonts/vera-12.tres" type="DynamicFont" id=6]
 [ext_resource path="res://game/lobby/game_lobby/game_lobby.gd" type="Script" id=7]
 [ext_resource path="res://resources/fonts/vera-10.tres" type="DynamicFont" id=8]
+[ext_resource path="res://resources/fonts/vera-bold-14.tres" type="DynamicFont" id=9]
 
 [node name="LobbyNode" type="Control"]
 anchor_right = 1.0
@@ -81,6 +82,7 @@ placeholder_text = "Game Name"
 script = ExtResource( 4 )
 
 [node name="GameLobby" type="Control" parent="."]
+visible = false
 margin_left = 640.0
 margin_top = 1.0
 margin_right = 1920.0
@@ -136,12 +138,14 @@ text = "Game Label"
 align = 1
 
 [node name="IdLabel" type="RichTextLabel" parent="GameLobby/GameInfo"]
-margin_left = 578.0
-margin_top = 53.0
-margin_right = 922.0
-margin_bottom = 89.0
+margin_left = 554.0
+margin_top = 51.0
+margin_right = 898.0
+margin_bottom = 87.0
 rect_pivot_offset = Vector2( -805, 0 )
-custom_fonts/normal_font = ExtResource( 6 )
+custom_colors/font_color_selected = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0.956863, 0.494118, 0.0431373, 1 )
+custom_fonts/normal_font = ExtResource( 9 )
 bbcode_enabled = true
 bbcode_text = "[color=#800000]Game ID:[/color]"
 text = "Game ID:"
@@ -154,6 +158,14 @@ margin_bottom = 89.0
 rect_pivot_offset = Vector2( -805, 0 )
 custom_fonts/font = ExtResource( 6 )
 text = "<GAME_ID>"
+
+[node name="StartButton" type="Button" parent="GameLobby/GameInfo"]
+margin_left = 718.0
+margin_top = 500.0
+margin_right = 876.0
+margin_bottom = 572.0
+custom_fonts/font = ExtResource( 3 )
+text = "Start Gmae"
 
 [node name="ErrorPopup" type="Popup" parent="."]
 margin_left = 967.0
@@ -193,4 +205,5 @@ text = "Ok"
 [connection signal="pressed" from="Lobby/Create" to="Client" method="create_game"]
 [connection signal="ready" from="Client" to="Client" method="_connect_to_lobby_service"]
 [connection signal="pressed" from="GameLobby/Disconnect" to="GameLobby/GameLobbyClient" method="disconnect_from_game"]
+[connection signal="pressed" from="GameLobby/GameInfo/StartButton" to="GameLobby/GameLobbyClient" method="start_game"]
 [connection signal="pressed" from="ErrorPopup/HidePopup" to="." method="_hide_popup"]
