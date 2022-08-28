@@ -62,3 +62,11 @@ During login check if the user has a valid token if they do they automatically l
 Save User's game information to cache so they can be more easily reinserted into the game.
 
 Add option for single session security where we validate the token and the session id match in the cache to prevent multiple session from opening (not sure if that is a good idea or not)
+
+
+## Notes to myself
+
+I can use the following command to keep an eye on my cached value when not using HTML 5:
+
+`watch "cat ~/.local/share/godot/app_userdata/Hidden\ Movement\ Game/user.info"`
+`watch "cat ~/.local/share/godot/app_userdata/Hidden\ Movement\ Game/game.info"`

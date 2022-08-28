@@ -27,12 +27,16 @@ export(Dictionary) var request_type={
 	join_game ="JOIN_GAME",
 	leave_game ="LEAVE_GAME",
 	start_game ="START_GAME",
+	restart_game ="RESTART_GAME",
 	load_assets = "LOAD_ASSETS",
+	player_update = "PLAYER_UPDATE",
+	goal_touched = "GOAL_TOUCHED",
 }
 
 
 #Request Types
 export(Dictionary) var response_type={
+	invalid ="invalid",
 	chat="chat",
 	game_list ="game_list",	
 	join_game ="join_game",	
@@ -42,6 +46,7 @@ export(Dictionary) var response_type={
 	start_game ="start_game",
 	load_assets ="load_assets",
 	map_setup ="map_setup",
+	player_update ="player_update",
 }
 
 

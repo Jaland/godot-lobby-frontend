@@ -7,10 +7,24 @@ extends Node
 
 var _client= WebSocketClient.new()
 
+###################
+# Custom Websocket Error Codes
+##################
+
+const CANNOT_ACCEPT=1003
+const CLOSED_ABNORMALLY=1006
+const VIOLATED_POLICY=1008
+
+###################
+# Preloaded Assests
+##################
+const _error_menu = preload("res://game/menus/error_menu/menu.tscn")
+
 func _init():
 	_client.connect("connection_established", self, "_client_connected")
 	_client.connect("connection_error", self, "_client_error")
 	_client.connect("connection_closed", self, "_client_disconnected")
+	_client.connect("server_close_request", self, "_client_close_request")
 	_client.connect("data_received", self, "_client_received")
 	
 # Once we have successfully connected to the host login
@@ -23,8 +37,8 @@ func _client_error():
 	client_error()
 	show_error("Issue connecting with host")
 
-func _client_close_request(code, reason):
-	print("Client close request: %s %s" % code, reason)
+func _client_close_request(code: int, reason: String):
+	print("Client close request code: ", code, " reason: ", reason)
 	client_close_request(code, reason)
 
 func _client_disconnected(clean=true):
@@ -64,7 +78,8 @@ func connect_to_websocket_path(path: String):
 	return err
 
 func send_data(data):
-	_client.get_peer(1).put_packet(data.to_utf8())
+	if(_client.get_connection_status() == WebSocketClient.CONNECTION_CONNECTED):
+		_client.get_peer(1).put_packet(data.to_utf8())
 
 func disconnect_from_host():
 	_client.disconnect_from_host(1000, "Client disconnecting...")
@@ -85,6 +100,9 @@ func client_connected():
 # Note: `show_error` will still be called. Override _client_error to handle this differently
 func client_error():
 	printerr("Got exception connecting to client")
+	var error_menu = _error_menu.instance()
+	get_parent().add_child(error_menu)
+	error_menu.show()
 	
 # Allows client class to override if there is a place to report errors
 func show_error(msg: String):
@@ -92,12 +110,16 @@ func show_error(msg: String):
 
 # Reports when the client has been disconnected from the server
 func client_close_request(_code, _reason):
-	pass
+	var error_menu = _error_menu.instance()
+	get_parent().add_child(error_menu)
+	error_menu.show()
 
 # Reports when the client has disconnected from the server
 func client_disconnected(_clean):
 	pass
 
 # Returns the Object from the client's data_received event 
-func object_recieved(_result):
-	pass
+func object_recieved(response):
+	match response.type:
+		GlobalVariables.response_type.invalid:
+			printerr("Recieved invalid response %s" % response)

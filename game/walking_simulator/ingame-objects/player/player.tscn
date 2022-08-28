@@ -1,0 +1,70 @@
+[gd_scene load_steps=36 format=2]
+
+[ext_resource path="res://resources/textures/walking_simulator/player/vampire/hide/appear_4.png" type="Texture" id=1]
+[ext_resource path="res://resources/textures/walking_simulator/player/vampire/hit/hit_4.png" type="Texture" id=2]
+[ext_resource path="res://resources/textures/walking_simulator/player/vampire/hit/hit_1.png" type="Texture" id=3]
+[ext_resource path="res://resources/textures/walking_simulator/player/vampire/hit/hit_2.png" type="Texture" id=4]
+[ext_resource path="res://resources/textures/walking_simulator/player/vampire/hit/hit_3.png" type="Texture" id=5]
+[ext_resource path="res://resources/textures/walking_simulator/player/vampire/hit/hit_5.png" type="Texture" id=6]
+[ext_resource path="res://resources/textures/walking_simulator/player/vampire/hit/hit_6.png" type="Texture" id=7]
+[ext_resource path="res://resources/textures/walking_simulator/player/vampire/go/go_6.png" type="Texture" id=8]
+[ext_resource path="res://resources/textures/walking_simulator/player/vampire/go/go_8.png" type="Texture" id=9]
+[ext_resource path="res://resources/textures/walking_simulator/player/vampire/hide/appear_10.png" type="Texture" id=10]
+[ext_resource path="res://resources/textures/walking_simulator/player/vampire/go/go_5.png" type="Texture" id=11]
+[ext_resource path="res://resources/textures/walking_simulator/player/vampire/hide/appear_1.png" type="Texture" id=12]
+[ext_resource path="res://resources/textures/walking_simulator/player/vampire/go/go_7.png" type="Texture" id=13]
+[ext_resource path="res://resources/textures/walking_simulator/player/vampire/hide/appear_9.png" type="Texture" id=14]
+[ext_resource path="res://resources/textures/walking_simulator/player/vampire/hide/appear_3.png" type="Texture" id=15]
+[ext_resource path="res://resources/textures/walking_simulator/player/vampire/hide/appear_8.png" type="Texture" id=16]
+[ext_resource path="res://resources/textures/walking_simulator/player/vampire/hide/appear_2.png" type="Texture" id=17]
+[ext_resource path="res://resources/textures/walking_simulator/player/vampire/go/go_4.png" type="Texture" id=18]
+[ext_resource path="res://resources/textures/walking_simulator/player/vampire/hit/hit_11.png" type="Texture" id=19]
+[ext_resource path="res://resources/textures/walking_simulator/player/vampire/hit/hit_10.png" type="Texture" id=20]
+[ext_resource path="res://resources/textures/walking_simulator/player/vampire/hit/hit_13.png" type="Texture" id=21]
+[ext_resource path="res://resources/textures/walking_simulator/player/vampire/hit/hit_8.png" type="Texture" id=22]
+[ext_resource path="res://resources/textures/walking_simulator/player/vampire/hide/appear_11.png" type="Texture" id=23]
+[ext_resource path="res://resources/textures/walking_simulator/player/vampire/go/go_2.png" type="Texture" id=24]
+[ext_resource path="res://resources/textures/walking_simulator/player/vampire/hide/appear_12.png" type="Texture" id=25]
+[ext_resource path="res://resources/textures/walking_simulator/player/vampire/go/go_1.png" type="Texture" id=26]
+[ext_resource path="res://resources/textures/walking_simulator/player/vampire/hit/hit_12.png" type="Texture" id=27]
+[ext_resource path="res://resources/textures/walking_simulator/player/vampire/hide/appear_7.png" type="Texture" id=28]
+[ext_resource path="res://resources/textures/walking_simulator/player/vampire/go/go_3.png" type="Texture" id=29]
+[ext_resource path="res://resources/textures/walking_simulator/player/vampire/hide/appear_5.png" type="Texture" id=30]
+[ext_resource path="res://resources/textures/walking_simulator/player/vampire/hit/hit_7.png" type="Texture" id=31]
+[ext_resource path="res://resources/textures/walking_simulator/player/vampire/hit/hit_9.png" type="Texture" id=32]
+[ext_resource path="res://resources/textures/walking_simulator/player/vampire/hide/appear_6.png" type="Texture" id=33]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 12 ), ExtResource( 17 ), ExtResource( 15 ), ExtResource( 1 ), ExtResource( 30 ), ExtResource( 33 ), ExtResource( 28 ), ExtResource( 16 ), ExtResource( 14 ), ExtResource( 10 ), ExtResource( 23 ), ExtResource( 25 ) ],
+"loop": true,
+"name": "hide",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 26 ), ExtResource( 24 ), ExtResource( 29 ), ExtResource( 18 ), ExtResource( 11 ), ExtResource( 8 ), ExtResource( 13 ), ExtResource( 9 ) ],
+"loop": true,
+"name": "go",
+"speed": 7.0
+}, {
+"frames": [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 2 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 31 ), ExtResource( 22 ), ExtResource( 32 ), ExtResource( 20 ), ExtResource( 19 ), ExtResource( 27 ), ExtResource( 21 ) ],
+"loop": true,
+"name": "hit",
+"speed": 5.0
+} ]
+
+[sub_resource type="CapsuleShape2D" id=2]
+
+[node name="Player" type="KinematicBody2D"]
+z_index = 101
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+position = Vector2( 15.4426, 20.3967 )
+scale = Vector2( 0.144228, 0.116686 )
+frames = SubResource( 1 )
+animation = "go"
+frame = 6
+playing = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 14, 20 )
+shape = SubResource( 2 )

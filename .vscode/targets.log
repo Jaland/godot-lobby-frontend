@@ -1,6 +1,4 @@
 make all --print-data-base --no-builtin-variables --no-builtin-rules --question
-make: *** No rule to make target 'all'.  Stop.
-
 # GNU Make 4.3
 # Built for x86_64-redhat-linux-gnu
 # Copyright (C) 1988-2020 Free Software Foundation, Inc.
@@ -8,7 +6,7 @@ make: *** No rule to make target 'all'.  Stop.
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Sun Aug 14 17:02:44 2022
+# Make data base, printed on Thu Aug 25 08:41:28 2022
 
 # Variables
 
@@ -63,7 +61,7 @@ IP_ADDRESS = 162.243.168.138
 # environment
 LANG = C
 # environment
-XAUTHORITY = /run/user/1000/.mutter-Xwaylandauth.VB1XQ1
+XAUTHORITY = /run/user/1000/.mutter-Xwaylandauth.YN1KR1
 # default
 .LOADED := 
 # default
@@ -108,13 +106,13 @@ MAKEFILE_LIST := Makefile
 # automatic
 @F = $(notdir $@)
 # environment
-VSCODE_PID = 7474
+VSCODE_PID = 13710
 # environment
 XDG_SESSION_TYPE = wayland
 # automatic
 ?D = $(patsubst %/,%,$(dir $?))
 # environment
-SESSION_MANAGER = local/unix:@/tmp/.ICE-unix/1858,unix/unix:/tmp/.ICE-unix/1858
+SESSION_MANAGER = local/unix:@/tmp/.ICE-unix/1979,unix/unix:/tmp/.ICE-unix/1979
 # automatic
 *F = $(notdir $*)
 # environment
@@ -163,7 +161,7 @@ MODULESHOME = /usr/share/lmod/lmod
 # environment
 LMOD_sys = Linux
 # environment
-INVOCATION_ID = cde0e4559cfe42e8acce0ea364567b98
+INVOCATION_ID = a21e3eefc9c74dc9b58c1819037c2758
 # environment
 USERNAME = jland
 # environment
@@ -172,6 +170,8 @@ GNOME_SETUP_DISPLAY = :1
 ?F = $(notdir $?)
 # environment
 XDG_CURRENT_DESKTOP = GNOME
+# environment
+KDEDIRS = /usr
 # automatic
 +F = $(notdir $+)
 # environment
@@ -189,7 +189,7 @@ BASH_ENV = /usr/share/lmod/lmod/init/bash
 # makefile
 .DEFAULT_GOAL := build
 # environment
-SYSTEMD_EXEC_PID = 1892
+SYSTEMD_EXEC_PID = 2016
 # environment
 MODULEPATH_ROOT = /usr/share/modulefiles
 # environment
@@ -203,19 +203,19 @@ USER = root
 # default
 MAKE_VERSION := 4.3
 # environment
-MANAGERPID = 1741
+MANAGERPID = 1858
 # environment
 which_declare = declare -f
 # environment
 DEBUGINFOD_URLS = https://debuginfod.fedoraproject.org/ 
 # environment
-GIO_LAUNCHED_DESKTOP_FILE_PID = 7474
+GIO_LAUNCHED_DESKTOP_FILE_PID = 13710
 # environment
 _ = /usr/bin/make
 # environment
 XDG_RUNTIME_DIR = /run/user/1000
 # environment
-JOURNAL_STREAM = 8:26623
+JOURNAL_STREAM = 8:40977
 # environment
 XDG_SESSION_CLASS = user
 # environment
@@ -245,7 +245,7 @@ LMOD_VERSION = 8.4.30
 # environment
 GDMSESSION = gnome
 # variable set hash-table stats:
-# Load=111/1024=11%, Rehash=0, Collisions=4/143=3%
+# Load=112/1024=11%, Rehash=0, Collisions=5/144=3%
 
 # Pattern-specific Variable Values
 
@@ -307,6 +307,9 @@ build:
 	@mkdir target
 	source resources/env/local.env
 	echo $TEST2
+ 
+make: *** No rule to make target 'all'.  Stop.
+
 	godot --export "HTML5"
 
 build-and-load: build load
@@ -349,8 +352,7 @@ restart-local:
 
 # strcache performance: lookups = 46 / hit rate = 28%
 # hash-table stats:
- 
 # Load=33/8192=0%, Rehash=0, Collisions=0/46=0%
-# Finished Make data base on Sun Aug 14 17:02:44 2022
+# Finished Make data base on Thu Aug 25 08:41:28 2022
 
  

@@ -1,0 +1,35 @@
+[remap]
+
+importer="texture"
+type="StreamTexture"
+path="res://.import/appear_8.png-2747fd4d9bb3bf821692c0db09d72c9c.stex"
+metadata={
+"vram_texture": false
+}
+
+[deps]
+
+source_file="res://resources/textures/walking_simulator/player/vampire/hide/appear_8.png"
+dest_files=[ "res://.import/appear_8.png-2747fd4d9bb3bf821692c0db09d72c9c.stex" ]
+
+[params]
+
+compress/mode=0
+compress/lossy_quality=0.7
+compress/hdr_mode=0
+compress/bptc_ldr=0
+compress/normal_map=0
+flags/repeat=0
+flags/filter=true
+flags/mipmaps=false
+flags/anisotropic=false
+flags/srgb=2
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/HDR_as_SRGB=false
+process/invert_color=false
+process/normal_map_invert_y=false
+stream=false
+size_limit=0
+detect_3d=true
+svg/scale=1.0

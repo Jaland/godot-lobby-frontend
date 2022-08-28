@@ -34,3 +34,4 @@ func _send_message(_ignored_input):
 func _on_Disconnect_pressed_game():
 	emit_signal("disconnect_from_game")
 	SceneManager.load_new_scene(GlobalVariables.scene_path.login)
+	

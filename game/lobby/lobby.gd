@@ -79,6 +79,7 @@ func show_error(msg: String):
 	_error_popup.popup()
 
 func object_recieved(response):
+	.object_recieved(response)
 	_chat_client.process_message(response)	
 	_game_lobby_client.process_message(response)	
 	match response.type:

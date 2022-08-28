@@ -5,6 +5,9 @@
 ##################
 extends Node
 
+###################
+# File Locations
+##################
 var gameInfoFile="user://game.info"
 var userInfoFile="user://user.info"
 export var tokenFile="user://token.jwt"
@@ -30,6 +33,17 @@ func object_to_json(object, requestType:String) -> String:
 	object.token=load_token()
 	var jsonObject = JSON.print(object)
 	return jsonObject
+	
+# Coviences method since vector2's json resolve as something like `(1939,1021)` by default
+func vector_to_object(vector2:Vector2) -> Object:
+	var object = {"x": vector2.x, "y": vector2.y}
+	return object
+		
+# Assumes the object has an x and y value
+func object_to_vector(object) -> Vector2:
+	if(!object.has("x") || !object.has("y")):
+		push_error("Unable to convert %s into vector2" % object)
+	return Vector2(object.x, object.y)
 	
 # Used to create request that does not require a body
 func request_to_json(requestType:String) -> String:
@@ -109,4 +123,6 @@ func load_token() -> String:
 	var token:String = token_file.get_line()
 	token_file.close()
 	return token
+
+
 

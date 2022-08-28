@@ -1,0 +1,34 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://game/menus/game_menu/menu.gd" type="Script" id=1]
+[ext_resource path="res://game/menus/game_menu/menu_ui.gd" type="Script" id=2]
+
+[node name="Popup" type="WindowDialog"]
+visible = true
+margin_right = 120.0
+margin_bottom = 150.0
+window_title = "Options"
+resizable = true
+script = ExtResource( 2 )
+
+[node name="Restart" type="Button" parent="."]
+margin_left = 13.0
+margin_top = 80.0
+margin_right = 104.0
+margin_bottom = 100.0
+rect_pivot_offset = Vector2( 35, 20 )
+text = "Restart Game"
+
+[node name="Exit" type="Button" parent="."]
+margin_left = 13.0
+margin_top = 112.0
+margin_right = 104.0
+margin_bottom = 132.0
+rect_pivot_offset = Vector2( 35, 20 )
+text = "Leave Game"
+
+[node name="Client" type="Node" parent="."]
+script = ExtResource( 1 )
+
+[connection signal="pressed" from="Restart" to="Client" method="restart_game"]
+[connection signal="pressed" from="Exit" to="Client" method="exit_game"]
