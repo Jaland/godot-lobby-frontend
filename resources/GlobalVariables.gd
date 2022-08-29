@@ -37,16 +37,20 @@ export(Dictionary) var request_type={
 #Request Types
 export(Dictionary) var response_type={
 	invalid ="invalid",
+#	Chat Responses
 	chat="chat",
+#	Lobby Responses
 	game_list ="game_list",	
 	join_game ="join_game",	
 	leave_game ="leave_game",
-#	This will be the most common response, used for updating game information
-	game ="game",
 	start_game ="start_game",
+#	Ingame Responses
+	game ="game",
+	starting_game ="starting_game",
 	load_assets ="load_assets",
 	map_setup ="map_setup",
 	player_update ="player_update",
+	game_over ="game_over",
 }
 
 

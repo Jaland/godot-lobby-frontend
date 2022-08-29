@@ -1,10 +1,8 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://game/menus/game_menu/menu.gd" type="Script" id=1]
-[ext_resource path="res://game/menus/game_menu/menu_ui.gd" type="Script" id=2]
+[ext_resource path="res://game/menus/game_menu/menu.gd" type="Script" id=2]
 
 [node name="Popup" type="WindowDialog"]
-visible = true
 margin_right = 120.0
 margin_bottom = 150.0
 window_title = "Options"
@@ -27,8 +25,7 @@ margin_bottom = 132.0
 rect_pivot_offset = Vector2( 35, 20 )
 text = "Leave Game"
 
-[node name="Client" type="Node" parent="."]
-script = ExtResource( 1 )
-
-[connection signal="pressed" from="Restart" to="Client" method="restart_game"]
-[connection signal="pressed" from="Exit" to="Client" method="exit_game"]
+[connection signal="pressed" from="Restart" to="." method="_close_popup"]
+[connection signal="pressed" from="Restart" to="." method="_restart_game"]
+[connection signal="pressed" from="Exit" to="." method="_close_popup"]
+[connection signal="pressed" from="Exit" to="." method="_exit_game"]

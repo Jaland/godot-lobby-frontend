@@ -22,10 +22,23 @@ onready var _players_list  = get_parent().get_node("Game/Viewport/Players")
 
 onready var _game_camera  = get_parent().get_node("Game/Viewport/Camera")
 
+onready var _start_game_popup  = get_parent().get_node("Start_Menu")
+
+
 onready var _game_scene = get_parent()
 
 var websocket_path= "/walkingsimulator"
 
+
+###################
+# Signals
+##################
+
+signal game_over
+
+signal prep_start_game
+
+signal host_clicked_start
 
 ###################
 # Game Objects
@@ -35,6 +48,7 @@ const _ingame_object_base_path = "res://game/walking_simulator/ingame-objects"
 
 var my_player
 onready var my_player_name = WebSocketUtils.load_user_info().username 
+var current_host = "" 
 var other_players = [] 
 
 ###################
@@ -68,7 +82,10 @@ func _get_spawn_points(numOfPoints: int) -> Array:
 func _get_goal_spawn_position() -> Vector2:
 	var numOfSpawnPoints = _goal_spawn_points.get_child_count()
 	var random = RandomNumberGenerator.new()
-	var goalSpawnPoint = _goal_spawn_points.get_child(random.randi_range(0,numOfSpawnPoints))
+	random.randomize()
+#	var randomPoint = random.randi_range(numOfSpawnPoints-1, 0)
+	var randomPoint = 1 # Used for testing
+	var goalSpawnPoint = _goal_spawn_points.get_child(randomPoint)
 	return goalSpawnPoint.position
 
 func _spawn_player_with_position(position: Vector2):
@@ -78,6 +95,7 @@ func _spawn_player_with_position(position: Vector2):
 
 func setup_players(players):
 	var playerNames = players.keys()
+	remove_all_children(_players_list)
 	for playerName in playerNames:
 		var playerInfo = players[playerName]
 		if(!playerInfo.has("position")):
@@ -101,10 +119,36 @@ func setup_goal(goalData):
 	if(goalData == null):
 		printerr("Goal data not provided in map setup")
 		return
+	if(_game_viewport.has_node("goal")):
+		_game_viewport.remove_child(_game_viewport.get_node("goal"))
 	var goal = goal_scene.instance()
+	goal.name = "goal"
 	goal.connect("body_entered", self, "_goal_touched")
 	goal.position = WebSocketUtils.object_to_vector(goalData.position)
 	_game_viewport.add_child(goal)
+	
+###################
+# Websocket Events #
+###################
+
+func object_recieved(response):
+	.object_recieved(response)
+	_chat_client.process_message(response)
+	match response.type:
+		GlobalVariables.response_type.load_assets:
+			process_load_assets(response)
+		GlobalVariables.response_type.map_setup:
+			process_setup_map(response)
+		GlobalVariables.response_type.player_update:
+			process_player_update(response)
+		GlobalVariables.response_type.game_over:
+			process_game_over(response)
+		GlobalVariables.response_type.starting_game:
+			process_starting_game(response)
+	
+func client_connected():
+	send_data(WebSocketUtils.request_to_json(GlobalVariables.request_type.initial_request))
+
 	
 ###################
 # Process Responses #
@@ -113,6 +157,9 @@ func setup_goal(goalData):
 func process_setup_map(data):
 	setup_players(data.players)
 	setup_goal(data.goal)
+	current_host = data.host
+	emit_signal("prep_start_game", is_host())
+	
 
 func process_load_assets(data):
 	var userList = data.users
@@ -138,6 +185,16 @@ func process_player_update(data):
 			player.velocity = Vector2(data.velocity.x, data.velocity.y)
 			return
 
+func process_game_over(data):
+	print("Processing Game Over")
+	var winner:String = data.winner
+	emit_signal("game_over", winner + " HAS WON!", is_host())
+
+
+func process_starting_game(data):
+	print("Processing Starting Game")
+	emit_signal("host_clicked_start")
+
 ###################
 # Process Signals #
 ###################
@@ -146,7 +203,9 @@ func _update_player_position(position:Vector2, velocity:Vector2):
 	var current_position = {"position": WebSocketUtils.vector_to_object(position)
 		, "velocity": WebSocketUtils.vector_to_object(velocity), "username": my_player_name}
 	send_data(WebSocketUtils.object_to_json(current_position, GlobalVariables.request_type.player_update))
-	
+
+func _start_game():
+	send_data(WebSocketUtils.request_to_json(GlobalVariables.request_type.start_game))
 
 func _goal_touched(body: Node):
 	var winner = body.get_meta("username")
@@ -155,24 +214,6 @@ func _goal_touched(body: Node):
 	print("Sending WIN message")
 	var goal_touched = {"winner": winner}
 	send_data(WebSocketUtils.object_to_json(goal_touched, GlobalVariables.request_type.goal_touched))
-
-###################
-# Websocket Events #
-###################
-
-func object_recieved(response):
-	.object_recieved(response)
-	_chat_client.process_message(response)
-	match response.type:
-		GlobalVariables.response_type.load_assets:
-			process_load_assets(response)
-		GlobalVariables.response_type.map_setup:
-			process_setup_map(response)
-		GlobalVariables.response_type.player_update:
-			process_player_update(response)
-	
-func client_connected():
-	send_data(WebSocketUtils.request_to_json(GlobalVariables.request_type.initial_request))
 
 
 ########################
@@ -195,3 +236,12 @@ func shuffleList(list):
 		shuffledList.append(list[indexList[x]])
 		indexList.remove(x)
 	return shuffledList
+
+
+# Stole this from sa form hoping it works
+func remove_all_children(node: Node):
+	for n in node.get_children():
+		node.remove_child(n)
+
+func is_host():
+	return current_host == my_player_name
