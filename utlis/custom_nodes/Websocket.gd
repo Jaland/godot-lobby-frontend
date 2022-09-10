@@ -72,7 +72,7 @@ func _client_received(_p_id = 1):
 
 
 func connect_to_websocket_path(path: String):
-	var base_host= ProjectSettings.get_setting("ws/hostname") + path
+	var base_host= ProjectSettings.get_setting("Websocket Host/Hostname URL") + path
 	var err = _client.connect_to_url(base_host, [], false)
 	assert (err == OK, "Unable to connect to host")
 	return err

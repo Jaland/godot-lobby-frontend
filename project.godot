@@ -8,6 +8,10 @@
 
 config_version=4
 
+[Websocket Host]
+
+"Hostname URL"="ws://localhost:8080"
+
 [application]
 
 config/name="Hidden Movement Game"
@@ -78,7 +82,3 @@ ui_menu={
 quality/driver/driver_name="GLES2"
 vram_compression/import_etc=true
 vram_compression/import_etc2=false
-
-[ws]
-
-hostname="ws://localhost:8080"

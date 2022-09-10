@@ -9,6 +9,8 @@ build:
 	echo $TEST2
 	godot --export "HTML5"
 
+
+# Used for local testing if you don't want to use the godot ui
 start-local:
 	@sudo systemctl start httpd.service
 restart-local:
@@ -22,6 +24,7 @@ load:
 
 build-and-load: build load 
 
+# Used to push to droplet
 push-to-droplet:
 	ssh $(USER)@$(IP_ADDRESS) rm -rf /var/www/html/*
 	rsync target/* $(USER)@$(IP_ADDRESS):/var/www/html

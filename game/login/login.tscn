@@ -91,10 +91,10 @@ text = "Register"
 
 [node name="ErrorMessage" type="RichTextLabel" parent="Login"]
 visible = false
-margin_left = 799.0
-margin_top = 555.0
-margin_right = 1049.0
-margin_bottom = 580.0
+margin_left = 658.0
+margin_top = 771.0
+margin_right = 1351.0
+margin_bottom = 855.0
 custom_colors/default_color = Color( 1, 0, 0, 1 )
 custom_fonts/normal_font = ExtResource( 3 )
 text = "Error"

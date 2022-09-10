@@ -1,68 +1,42 @@
 # Godot Lobby Example
 
-The goal of this project is the creation of a basic lobby system in Godot that uses a backend server built in Java using the Quarkus framework, more information on that part of the project can be found [here](). While I was initially 
+The goal of this project is the creation of a basic lobby system in Godot that uses a backend server built in Java using the Quarkus framework. For documentation on the the backend server check [this](https://github.com/Jaland/godot-lobby-backend) repository.
 
 Language: GDScript
 
 Renderer: GLES 2
 
+Local Dev Using: Fedora Workstation 35
+
 # Prerequisites
 
 [Godot](https://docs.godotengine.org/en/stable/)
 
-The below build assumes you are on a linux machine with `http` installed (tested on Fedora)
+The below build assumes you are on a linux machine with [HTTPD](https://httpd.apache.org/docs/2.4/install.html) installed
 
-## Build locally
+## Deploy locally
 
-Project can be exported manually using the gui or using the make file. To use the make file:
+While I recommend most dev work being done through the Godot UI, I have provided a make files that allow for local deployment to an http server. Note, this assumes you are running on a linux machine (I am using Fedora) with http server installed.
+
+### Building with the Make File
 
 `make build` Creates the javascript program inside of the `target` directory
 
 `make load-site` Will copy over the files into `/var/www/html` which should be available on `localhost` by default (assuming you are using Fedora linux)
 
-## Install on Droplet
+## Install on DigitalOcean
 
-If using this lobby system in order to give access to your project to your friends across the internet you will need to install it on a machine that allows for external access. There are many inexpensive options that can be setup nowadays such a Google Cloud, AWS free, or even locally if you are able to open up some ports (I would not recommend this for security reasons unless you really know what you are doing).
+The primary use case of this application is to create a lobby that can be deployed using the HTML5 builder, and in order to do this in away that is easily reachable it will have to be deployed onto a server. There are many inexpensive options for this nowadays such a Google Cloud, AWS free, or even locally if you are able to open up some ports (I would not recommend this for security and difficulty reasons unless you really know what you are doing).
 
-Personally I found that the most simplistic option was creating a `Droplet` on (Digital Ocean)[https://m.do.co/c/5dca16f0ed95]. Creating and accessing it is very simple, the lowest level 1 gig of memory only cost like 7 dollars a month (which should be fine for initial testing), and you can easily turn it on and off as you please.
+I have recently been playing around with DigitalOcean and found that to be fairly simplistic and reasonably priced. And for the Frontend of the application we can actually deploy an application for free since it is a static site (note the backend will require a fairly small investment but I talk more about that on the [backend's readme](https://github.com/Jaland/godot-lobby-backend/blob/main/README.md))
 
-### Initial Setup
+## Updating Server Host Information
 
-The following instructions only need to be done once on the creation of the Digital Ocean Droplet.
+This project includes the custom value `Websocket Host-> Hostname Url` which is set to `localhost:8080` by default, but can be changed in the project settings as seen below:
 
-Install HTTPD, make and Git
+![Update Websocket Host](resources/assets/hostname-option.png)
 
-``` sh
-dnf install httpd git make
-```
-
-Clone Repo
-
-``` sh
-git clone https://github.com/Jaland/secret-hitler-2.0.git
-```
-
-Start the server once in order to create the `/etc/www` directory
-
-``` sh
-sudo systemctl start httpd
-```
-
-### Update Version
-
-``` sh
-cd secret-hitler-2.0/
-git pull
-```
-
-## TODO's
-
-During login check if the user has a valid token if they do they automatically log them in.
-
-Save User's game information to cache so they can be more easily reinserted into the game.
-
-Add option for single session security where we validate the token and the session id match in the cache to prevent multiple session from opening (not sure if that is a good idea or not)
-
+> **Tip** We will use the `override.cfg`s in the `resource/env` folders to override this value when we deploy to our server using the Gitlab CI/CD
 
 ## Notes to myself
 

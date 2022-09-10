@@ -8,7 +8,7 @@ make: *** No rule to make target 'all'.  Stop.
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Mon Aug 29 18:05:36 2022
+# Make data base, printed on Sat Sep 10 09:28:30 2022
 
 # Variables
 
@@ -63,7 +63,7 @@ IP_ADDRESS = 162.243.168.138
 # environment
 LANG = C
 # environment
-XAUTHORITY = /run/user/1000/.mutter-Xwaylandauth.YN1KR1
+XAUTHORITY = /run/user/1000/.mutter-Xwaylandauth.HV49R1
 # default
 .LOADED := 
 # default
@@ -108,13 +108,13 @@ MAKEFILE_LIST := Makefile
 # automatic
 @F = $(notdir $@)
 # environment
-VSCODE_PID = 1992485
+VSCODE_PID = 11722
 # environment
 XDG_SESSION_TYPE = wayland
 # automatic
 ?D = $(patsubst %/,%,$(dir $?))
 # environment
-SESSION_MANAGER = local/unix:@/tmp/.ICE-unix/1979,unix/unix:/tmp/.ICE-unix/1979
+SESSION_MANAGER = local/unix:@/tmp/.ICE-unix/1949,unix/unix:/tmp/.ICE-unix/1949
 # automatic
 *F = $(notdir $*)
 # environment
@@ -163,7 +163,7 @@ MODULESHOME = /usr/share/lmod/lmod
 # environment
 LMOD_sys = Linux
 # environment
-INVOCATION_ID = a21e3eefc9c74dc9b58c1819037c2758
+INVOCATION_ID = 2745743d1bd14f08abd40f8e5f65efd1
 # environment
 USERNAME = jland
 # environment
@@ -191,7 +191,7 @@ BASH_ENV = /usr/share/lmod/lmod/init/bash
 # makefile
 .DEFAULT_GOAL := build
 # environment
-SYSTEMD_EXEC_PID = 2016
+SYSTEMD_EXEC_PID = 1986
 # environment
 MODULEPATH_ROOT = /usr/share/modulefiles
 # environment
@@ -205,19 +205,19 @@ USER = root
 # default
 MAKE_VERSION := 4.3
 # environment
-MANAGERPID = 1858
+MANAGERPID = 1826
 # environment
 which_declare = declare -f
 # environment
 DEBUGINFOD_URLS = https://debuginfod.fedoraproject.org/ 
 # environment
-GIO_LAUNCHED_DESKTOP_FILE_PID = 1992485
+GIO_LAUNCHED_DESKTOP_FILE_PID = 11722
 # environment
 _ = /usr/bin/make
 # environment
 XDG_RUNTIME_DIR = /run/user/1000
 # environment
-JOURNAL_STREAM = 8:40977
+JOURNAL_STREAM = 8:34297
 # environment
 XDG_SESSION_CLASS = user
 # environment
@@ -269,14 +269,14 @@ push-to-droplet:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 26):
+#  recipe to execute (from 'Makefile', line 29):
 	ssh $(USER)@$(IP_ADDRESS) rm -rf /var/www/html/*
 	rsync target/* $(USER)@$(IP_ADDRESS):/var/www/html
 
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2022-07-13 11:03:52.344409363
+#  Last modified 2022-09-03 11:51:57.306040433
 #  File has been updated.
 #  Successfully updated.
 
@@ -284,10 +284,10 @@ Makefile:
 .DEFAULT:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
+ 
 #  File has not been updated.
 
 # Not a target:
- 
 all:
 #  Command line target.
 #  Implicit rule search has been done.
@@ -298,7 +298,7 @@ start-local:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 13):
+#  recipe to execute (from 'Makefile', line 15):
 	@sudo systemctl start httpd.service
 
 build:
@@ -321,14 +321,14 @@ stop-local:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 17):
+#  recipe to execute (from 'Makefile', line 19):
 	@sudo systemctl stop httpd.service
 
 load:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 20):
+#  recipe to execute (from 'Makefile', line 22):
 	@sudo rm -rf /var/www/html/*
 	@sudo cp -rf target/* /var/www/html/
 
@@ -336,10 +336,11 @@ restart-local:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 15):
+#  recipe to execute (from 'Makefile', line 17):
 	@sudo systemctl restart httpd.service
 
 # files hash-table stats:
+ 
 # Load=11/1024=1%, Rehash=0, Collisions=0/23=0%
 # VPATH Search Paths
 
@@ -353,6 +354,6 @@ restart-local:
 # strcache performance: lookups = 46 / hit rate = 28%
 # hash-table stats:
 # Load=33/8192=0%, Rehash=0, Collisions=0/46=0%
-# Finished Make data base on Mon Aug 29 18:05:36 2022
+# Finished Make data base on Sat Sep 10 09:28:30 2022
 
  

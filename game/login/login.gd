@@ -37,6 +37,10 @@ func login(username, password, register):
 # Websocket Events #
 ###################
 
+# Prevent the popup from being shown for login page
+func client_error():
+	pass
+
 func show_error(error_text: String):
 	_error_label.text=error_text
 	_error_label.show()
@@ -54,8 +58,8 @@ func _client_received(_p_id = 1):
 func client_connected():
 	emit_signal("client_connected")
 
-func client_close_request(code, _reason):
+func client_close_request(code, reason):
 	# Returned from server for login failure
-	if code == 1011:
-		print("Login Failure")
-		show_error("Login failed")
+	if code != 1000:
+		print("Login Failure: ", reason)
+		show_error(reason)
