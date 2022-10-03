@@ -1,8 +1,9 @@
 ---
 # This will be the name of your `app` on Digital Ocean
 name: lobby-example-app-frontend
-services:
+static_sites:
 - name: lobby-example
+  environment_slug: html
   github:
     branch: main
     deploy_on_push: true
