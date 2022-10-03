@@ -1,9 +1,0 @@
-make --dry-run --always-make --keep-going --print-directory
-make: Entering directory '/home/jland/Documents/code/game/test-project-1'
-rm -rf target
-mkdir target
-source resources/env/local.env
-echo EST2
-godot --export "HTML5"
-make: Leaving directory '/home/jland/Documents/code/game/test-project-1'
- 

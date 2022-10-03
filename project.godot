@@ -10,7 +10,7 @@ config_version=4
 
 [Websocket Host]
 
-"Hostname URL"="ws://localhost:8080"
+"Hostname URL"="wss://coral-app-pwka6.ondigitalocean.app"
 
 [application]
 

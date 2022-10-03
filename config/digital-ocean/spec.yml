@@ -1,0 +1,14 @@
+---
+# This will be the name of your `app` on Digital Ocean
+name: lobby-example-app-frontend
+services:
+- name: lobby-example
+  github:
+    branch: main
+    deploy_on_push: true
+    # Make sure the repo below is pointing to your repository (otherwise you will drive your self crazy trying to figure out why your changes aren't working)
+    repo: Jaland/godot-lobby-frontend
+  routes:
+  - path: "/"
+  source_dir: target
+# region: nyc1

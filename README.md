@@ -28,7 +28,7 @@ While I recommend most dev work being done through the Godot UI, I have provided
 
 The primary use case of this application is to create a lobby that can be deployed using the HTML5 builder, and in order to do this in away that is easily reachable it will have to be deployed onto a server. There are many inexpensive options for this nowadays such a Google Cloud, AWS free, or even locally if you are able to open up some ports (I would not recommend this for security and difficulty reasons unless you really know what you are doing).
 
-I have recently been playing around with DigitalOcean and found that to be fairly simplistic and reasonably priced. And for the Frontend of the application we can actually deploy an application for free since it is a static site (note the backend will require a fairly small investment but I talk more about that on the [backend's readme](https://github.com/Jaland/godot-lobby-backend/blob/main/README.md))
+I have recently been playing around with [DigitalOcean](https://m.do.co/c/5dca16f0ed95) and found that to be fairly simplistic and reasonably priced. And for the Frontend of the application we can actually deploy an application for free since it is a static site (note the backend will require a fairly small investment but I talk more about that on the [backend's readme](https://github.com/Jaland/godot-lobby-backend/blob/main/README.md))
 
 ## Updating Server Host Information
 
