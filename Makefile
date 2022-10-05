@@ -5,8 +5,6 @@ SHELL = /bin/bash
 build:
 	@rm -rf target
 	@mkdir target
-	source resources/env/local.env
-	echo $TEST2
 	godot --export "HTML5"
 
 
