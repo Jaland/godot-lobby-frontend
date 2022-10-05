@@ -2,13 +2,10 @@
 # deploy the application on a DIgitalOcean Kubernetes cluster. For description to the entire worklow, 
 # see  .
 
-name: Create Backend Application in Digital Ocean
+name: Create Frontend Application in Digital Ocean
 
 # Controls when the action will run.
 on: workflow_dispatch
-
-env:
-  IMAGE_NAME: lobby-example
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel.
 jobs:
