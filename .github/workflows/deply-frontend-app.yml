@@ -22,21 +22,25 @@ jobs:
     - name: Checkout master
       uses: actions/checkout@main
 
-    # This could be made smarter if you had multiple environments
-    - name: Create report file
-      run: |
-        rm -rf target
-        mkdir target
-        cp resources/overrides/override.cfg override.cfg
-        godot --export "HTML5"
+    ###########
+    # The steps below can be used if you want to build your image using workflows,
+    # but I have decided not to include it since it could cause issues based on versioning
+    ###########
+    # # This could be made smarter if you had multiple environments
+    # - name: Build Godot Project
+    #   run: |
+    #     rm -rf target
+    #     mkdir target
+    #     cp resources/overrides/override.cfg override.cfg
+    #     godot --export "HTML5"
 
-    - name: Update Target Folder
-      run: |
-        git config --global user.name 'GithubAction'
-        git config --global user.email 'githubaction@users.noreply.github.com'
-        git add target
-        git commit -am "Automated build of target"
-        git push
+    # - name: Update Target Folder
+    #   run: |
+    #     git config --global user.name 'GithubAction'
+    #     git config --global user.email 'githubaction@users.noreply.github.com'
+    #     git add target
+    #     git commit -am "Automated build of target"
+    #     git push
 
       
     # Install doctl.

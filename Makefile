@@ -1,8 +1,14 @@
-IP_ADDRESS=162.243.168.138
-USER=root
-SHELL = /bin/bash
+OVERRIDE_FILE=resources/overrides/override.cfg
 
 build:
+	@rm -rf target
+	@mkdir target
+	@cp ${OVERRIDE_FILE} override.cfg
+	godot --export "HTML5"
+	@rm override.cfg
+
+
+build-local:
 	@rm -rf target
 	@mkdir target
 	godot --export "HTML5"
@@ -21,8 +27,3 @@ load:
 	@sudo cp -rf target/* /var/www/html/
 
 build-and-load: build load 
-
-# Used to push to droplet
-push-to-droplet:
-	ssh $(USER)@$(IP_ADDRESS) rm -rf /var/www/html/*
-	rsync target/* $(USER)@$(IP_ADDRESS):/var/www/html
