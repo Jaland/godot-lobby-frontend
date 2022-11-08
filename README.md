@@ -2,11 +2,9 @@
 
 The goal of this project is the creation of a basic lobby system with a frontend using Godot and a backend server built in Java using the Quarkus framework. For documentation on the the backend server check [this](https://github.com/Jaland/godot-lobby-backend) repository.
 
-Language: GDScript
+**Language:** GDScript
 
-Renderer: GLES 2
-
-Local Dev Using: Fedora Workstation 35
+**Renderer:** GLES 2
 
 ## Prerequisites
 
@@ -14,25 +12,19 @@ Local Dev Using: Fedora Workstation 35
 
 # Deploying
 
-## Deploy Local
+## Deploying Local
 
-The easiest way to do local deployment of the frontend is using the Godot UI. The normal play button will create a running instance of your application that should work fine but you can also use the `Exported HTML` button to run the game in the browser. For the most part it should work the same in both, but there are some minor differences between using HTML5 and the normal build. Also using the `HTML` button you can have multiple instances of the app running in different windows which makes it easier to test the lobby systems.
+The easiest way to do local deployment of the frontend is using the Godot UI. The normal play button will create a running instance of your application that should work fine but you can also use the `Exported HTML` button to run the game in the browser. For the most part it should work the same in both, but there are some [limitations](https://docs.godotengine.org/en/stable/tutorials/export/exporting_for_web.html) between using HTML5 and the normal build. Also using the `HTML` button you can have multiple instances of the app running in different windows which makes it easier to test the lobby systems.
 
-I have also provided a make files that allow for local deployment to an http server if desired.
+I have also provided a `make` files that allow for local deployment to an http server if desired using `make build-and-load`.
 
-> Note: This assumes you are running on a linux machine with `httpd` and `make` installed. But again using the Godot UI for testing is actually easier IMO.
-
-### Building with the Make File
-
-`make build` Creates the javascript program inside of the `target` directory
-
-`make load-site` Will copy over the files into `/var/www/html` which should be available on `localhost` by default (assuming you are using Fedora linux)
+> Note: The make command assumes you are running on a linux machine with `httpd` and `make` installed. But again using the Godot UI for testing is actually easier IMO.
 
 ## Install on DigitalOcean
 
-While building locally is fun and easy(er), the idea of a a lobby service makes more sense when accessible over the internet. We can do that using the HTML5 builder, and pushing our static site onto a server with external connections. There are many inexpensive options for this nowadays such a Google Cloud, AWS has a free teir I think, or even locally if you are able to open up some ports on your router (I would not recommend this for security and difficulty reasons unless you really know what you are doing). I have decided to do my deployment using [Digital Ocean's Cloud](https://cloud.digitalocean.com/), just cause I found the UI to be pretty easy to understand and the pricing was pretty straight forward. And the rest of this section will assume that you are using `Digital Ocean Cloud` and `Github`.
+While building locally is fun and easy(er), the idea of a lobby service generally makes more sense when accessible over the internet. We can do that using the HTML5 builder to create a static site, and push it onto a server with external connections. There are many inexpensive options for this nowadays such a Google Cloud, AWS has a free tier I think, or even locally if you are able to open up some ports on your router (I would not recommend this for security and difficulty reasons unless you really know what you are doing). I have decided to do my deployment using [Digital Ocean's Cloud](https://cloud.digitalocean.com/), just cause I found the UI to be pretty easy to understand and the pricing was pretty straight forward (although not totally free). And the rest of this section will walk through how to do the deployment using `Digital Ocean Cloud` and `Github`.
 
-> Note that the frontend install does not actually cost anything to host since it is a static site.
+> Note that the frontend install does not actually cost anything to host since it is a static site (but the backend will cost a little bit).
 
 ### Prerequisites
 
@@ -45,13 +37,14 @@ In order to use the processes I have created you will need the following:
 
 ### Code Build Architectures
 
-
 ```mermaid
   graph TD
 
     subgraph GR[Github Repository]
+    subgraph GW[Workflows]
       wf[Create Frontend App Workflow]
-      spec>config/digital-ocean/spec.yaml]
+    end
+      spec>config/digital-ocean/spec.yml]
 
       wf -->|Read Spec| spec 
     end
@@ -73,6 +66,7 @@ In order to use the processes I have created you will need the following:
       u2 --> net
       
     style GR fill:#c9510c
+    style GW fill:#d98554
     style DO fill:#008bcf
 ```
 
@@ -98,38 +92,62 @@ Now that our hostname is set we can build our static site and push it to our Git
 1. **Using Godot Native:** `godot --export "HTML5"`
     * Note: Make sure that you move the `override.cfg` file to the base folder if required
 
-> **Info:** Normally I would have the build done using `Gitlab Workflows` but doing it locally and pushing sidesteps versioning issues and just makes it simpler. But does mean you will have to make sure you actually build before you push.
+> **Info:** Normally I would have the build done using `Gitlab Workflows` but doing it locally and pushing sidesteps versioning issues and just makes it simpler. Although does mean you will have to make sure you remember actually build your application before you push to the repo.
 
-## Setting up Github Repo
+### Setting Up The  Github Repo
 
 This project takes advantage of [Github Workflows](https://docs.github.com/en/actions/using-workflows) in order to do the installation of the frontend application to your `Digital Ocean` account, using DO's [doctl](https://docs.digitalocean.com/reference/doctl/) cli.
 
 In order to allow Github to connect to your `Digital Ocean` account you will need to do two things:
 
-First create a token on through the Digital Ocean UI. This can be done by navigating to `API` -> `Generate new Token`
+#### Creating API Token
+
+First create a token using the Digital Ocean UI. This can be done by navigating to `API` -> `Generate new Token`
 
 ![Get Access Token](config/readme/assets/get-token.png)
 
 > Tip: Make sure to capture your token on creation, there is no way to retrieve it afterwards. (But you can always just delete and recreate)
 
-Then we need to store that token inside of a `Repository Secret` in our Git Repository that will allow our workflow to push into our DigitalOcean account.
-
-### Required Secrets
-
-| Name                      | Value                                                                                                       | Example                     |
-| ------------------------- | ----------------------------------------------------------------------------------------------------------- | --------------------------- |
-| DIGITALOCEAN_ACCESS_TOKEN | Token retrieved from the DO cloud ui. `API -> Generate New Token`                                           |                             |
-|
-
 ### Creating Repository Secret
+
+Then we need to store that token inside of a `Repository Secret` in our Git Repository that will allow our workflow to push into our DigitalOcean account.
 
 Creating a `Repository Secret` in Github is fairly simple. Just navigate to `Settings` -> `Secrets` -> `Actions` -> `New Repository Secret`
 
 ![Update Websocket Host](config/readme/assets/create-secret.png)
 
-## Notes to myself
+#### Required Secrets
 
-I can use the following command to keep an eye on my cached value when not using HTML 5:
+| Name                      | Value                                                                                                       | Example                     |
+| ------------------------- | ----------------------------------------------------------------------------------------------------------- | --------------------------- |
+| DIGITALOCEAN_ACCESS_TOKEN | Token retrieved from the DO cloud ui. `API -> Generate New Token`                                           |                             |
+
+
+## Running Our Workflow
+
+### Update `spec.yml`
+
+First we need to update our `config/digital-ocean/spec.yml`. The only change that should be required is modifying `repo` to point to your repository instead of mine.
+
+### Run the Workflow
+
+The workflow is set in a way that it needs to be run manually. And should create a Digital Ocean app named `lobby-example-app-frontend` (meaning that app can not already exist, see cleanup below if it does).
+
+To run the workflow navigate to the GitHub UI and hit `Actions` -> `Create Frontend Appllic.. Workflow` -> `Run Workflow` -> `Run Workflow` 
+
+![Run Workflow](config/readme/assets/run_workflow.png)
+
+> Important: The workflow creates a Digital Ocean App that should be free (assuming no changes to the spec.yml besides the repo url).
+
+## Clean Up
+
+Currently the workflow requires the application is deleted, fortunately that ia pretty simple to do through the Digital Ocean UI. Just navigate to the App and hit `Actions` -> `Destroy App`
+
+![Destroy App](config/readme/assets/destroy_app.png)
+
+## Debug Notes
+
+When doing local debugging when not using HTML 5 build the following commands can be used to keep an eye on game and user info saved locally (assuming linux is being used)
 
 `watch "cat ~/.local/share/godot/app_userdata/Hidden\ Movement\ Game/user.info"`
 `watch "cat ~/.local/share/godot/app_userdata/Hidden\ Movement\ Game/game.info"`

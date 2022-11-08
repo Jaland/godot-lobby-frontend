@@ -34,7 +34,7 @@ export(Dictionary) var request_type={
 }
 
 
-#Request Types
+#Response Types
 export(Dictionary) var response_type={
 	invalid ="invalid",
 #	Chat Responses

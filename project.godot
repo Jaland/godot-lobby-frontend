@@ -16,7 +16,7 @@ ws]hostname="ws://lobby-example-app-backend-vyl4z.ondigitalocean.app/"
 
 [Websocket Host]
 
-"Hostname URL"="wss://lobby-example-app-backend-dwics.ondigitalocean.app"
+"Hostname URL"="ws://localhost:8080"
 
 [application]
 
