@@ -108,7 +108,7 @@ First create a token using the Digital Ocean UI. This can be done by navigating 
 
 > Tip: Make sure to capture your token on creation, there is no way to retrieve it afterwards. (But you can always just delete and recreate)
 
-### Creating Repository Secret
+#### Creating Repository Secret
 
 Then we need to store that token inside of a `Repository Secret` in our Git Repository that will allow our workflow to push into our DigitalOcean account.
 
@@ -116,7 +116,7 @@ Creating a `Repository Secret` in Github is fairly simple. Just navigate to `Set
 
 ![Update Websocket Host](config/readme/assets/create-secret.png)
 
-#### Required Secrets
+##### Required Secrets
 
 | Name                      | Value                                                                                                       | Example                     |
 | ------------------------- | ----------------------------------------------------------------------------------------------------------- | --------------------------- |
