@@ -10,7 +10,7 @@ config_version=4
 
 [Websocket Host]
 
-"Hostname URL"="wss://lobby-example-app-backend-<UUID>.ondigitalocean.app"
+"Hostname URL"="wss://lobby-example-app-backend-bgey3.ondigitalocean.app"
 
 [application]
 
