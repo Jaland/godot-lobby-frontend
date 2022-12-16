@@ -8,15 +8,9 @@
 
 config_version=4
 
-"Hostname URL"="wss://lobby-example-app-backend-vyl4z.ondigitalocean.app/"
-
-[#Changethevaluebelowtothehostnameofthebackendserver.[WebsocketHost]
-
-ws]hostname="ws://lobby-example-app-backend-vyl4z.ondigitalocean.app/"
-
 [Websocket Host]
 
-"Hostname URL"="ws://localhost:8080"
+"Hostname URL"="ws://lobby-example-app-backend-vyl4z.ondigitalocean.app/"
 
 [application]
 

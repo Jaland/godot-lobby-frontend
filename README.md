@@ -12,7 +12,7 @@ The goal of this project is the creation of a basic lobby system with a frontend
 
 # Deploying
 
-## Deploying Local
+## Deploying Local (Quick Deploy)
 
 The easiest way to do local deployment of the frontend is using the Godot UI. The normal play button will create a running instance of your application that should work fine but you can also use the `Exported HTML` button to run the game in the browser. For the most part it should work the same in both, but there are some [limitations](https://docs.godotengine.org/en/stable/tutorials/export/exporting_for_web.html) between using HTML5 and the normal build. Also using the `HTML` button you can have multiple instances of the app running in different windows which makes it easier to test the lobby systems.
 
@@ -124,7 +124,6 @@ Creating a `Repository Secret` in Github is fairly simple. Just navigate to `Set
 | ------------------------- | ----------------------------------------------------------------------------------------------------------- | --------------------------- |
 | DIGITALOCEAN_ACCESS_TOKEN | Token retrieved from the DO cloud ui. `API -> Generate New Token`                                           |                             |
 
-
 ## Running Our Workflow
 
 ### Update `spec.yml`
@@ -143,7 +142,7 @@ To run the workflow navigate to the GitHub UI and hit `Actions` -> `Create Front
 
 ## Clean Up
 
-Currently the workflow requires the application is deleted, fortunately that ia pretty simple to do through the Digital Ocean UI. Just navigate to the App and hit `Actions` -> `Destroy App`
+Currently the workflow requires the application is deleted in order to rerun, fortunately that ia pretty simple to do through the Digital Ocean UI. Just navigate to the App and hit `Actions` -> `Destroy App`
 
 ![Destroy App](config/readme/assets/destroy_app.png)
 
@@ -183,7 +182,7 @@ Below is some information on how I organized the code. More of the high level in
  ┣ 📜project.godot
 ```
 
-1. **config:** Contains the `spec.yaml` used for deployment of the application to Digtial Ocean
+1. **config:** Contains the `spec.yaml` used for deployment of the application to Digital Ocean
 1. **game:** Contains all the scenes used in the game including the login and lobby scenes
     * A. **chat:** Scene backing the player chat, note it is inherited by the lobby and game scenes
     * B. **lobby** Main Lobby Scene listing the games
@@ -206,9 +205,17 @@ Below is some information on how I organized the code. More of the high level in
 ┃ ┗ 📜chat_ui.gd
 ```
 
+Each scene's logic generally run through 3 main files:
+
+1. The .tscn file (i.e. Text Scene) describing the scene
+2. The <SCENE_NAME>.gd which extends the `Websocket` node and is used for the "Business Logic" and the communication with the server
+3. the <SCENE_NAME>-ui.gd is used to control
+
 ## Debug Notes
 
 When doing local debugging when not using HTML 5 build the following commands can be used to keep an eye on game and user info saved locally (assuming linux is being used)
 
 `watch "cat ~/.local/share/godot/app_userdata/Hidden\ Movement\ Game/user.info"`
 `watch "cat ~/.local/share/godot/app_userdata/Hidden\ Movement\ Game/game.info"`
+
+When using HTML 5 the information is stored as cookies and can be seen using the inspector.
