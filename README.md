@@ -84,13 +84,13 @@ This project includes the custom value `Websocket Host-> Hostname Url` which is 
 
 ![Update Websocket Host](config/readme/assets/hostname-option.png)
 
-> **Tip** Changing the value in the `override.cfg` file at the base of the project will override this value when we deploy to our server using the `make build` command. Or you can copy the `override.cfg` file to the base directory if you are building directly using `godot`
+> **Tip** Changing the value in the `resources/overrides/override.cfg` file at the base of the project will override this value when we deploy to our server using the `make build` command. Or you can copy the `override.cfg` file to the base directory if you are building directly using `godot`
 
 ### Building Your Application
 
 Now that our hostname is set we can build our static site and push it to our Git Repo. This can be done in one of two ways:
 
-1. **Using Make:** `make build`
+1. **Using Make:** `make build` (Make sure to modify the the `resources/overrides/override.cfg` or use the `make build-local` command to use the value set in the godot ui)
 1. **Using Godot Native:** `godot --export "HTML5"`
     * Note: Make sure that you move the `override.cfg` file to the base folder if required
 
